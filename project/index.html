@@ -30,20 +30,25 @@
       <section class="overview">
         <table class="overviewTable">
           <caption>
-            Today's cryptocurrency biggest movers
+            Crypto Markets:
           </caption>
-          <!-- <thead>
+
+          <div id="target">Loading...</div>
+          <script id="template" type="x-tmpl-mustache">
+            Hello {{ data }}!
+          </script>
+          <thead>
             <tr>
-              <th>Header 1</th>
-              <th>Header 2</th>
-              <th>Header 3</th>
-              <th>Header 4</th>
-              <th>Header 5</th>
-              <th>Header 6</th>
-              <th>Header 7</th>
+              <th>Add to Wallet</th>
+              <th>#</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Market Cap</th>
+              <th>Volume</th>
+              <th>Circulating</th>
               <th>Header 8</th>
             </tr>
-          </thead> -->
+          </thead>
           <tbody>
             <tr>
               <td>&nbsp;</td>
@@ -251,16 +256,14 @@
         </table>
       </section>
     </main>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js"
-      integrity="sha512-HYiNpwSxYuji84SQbCU5m9kHEsRqwWypXgJMBtbRSumlx1iBB6QaxgEBZHSHEGM+fKyCX/3Kb5V5jeVXm0OglQ=="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://unpkg.com/mustache@latest"></script>
+    <script src="endPoints.js" type="module"></script>
     <script src="key.js" type="module"></script>
     <script src="cache.js" type="module"></script>
-    <script src="events.js" type="module"></script>
     <script src="api.js" type="module"></script>
+    <script src="render.js" type="module"></script>
     <script src="data.js" type="module"></script>
     <script src="app.js" type="module"></script>
+    <script src="events.js" type="module"></script>
   </body>
 </html>

@@ -31,14 +31,19 @@ clone the repository and host index.html on your web server.
 
 # APIs Used
 
-[description]: \assets\CryptoCompareDescription.JPG
+![description cryptocompare API](./project/assets/CryptoCompareDescription.JPG "Cryptocompare")
 
-![description cryptocompare API][description]
 Cryptocompare: https://min-api.cryptocompare.com/
 
 # User & Interaction Diagram
 
-# Design patterns used
+# Code Design patterns used
+
+- Switch
+- Class - constructor()
+- localStorage.setItem() && localStorage.getItem()
+- fetch()
+-
 
 # Checklist
 

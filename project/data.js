@@ -28,6 +28,9 @@ const dataRefine = {
     let array = [];
     return data;
   },
+  topListByVolume24Hrs: (data, query) => {
+    return data;
+  },
   checkQuery: function (data, query) {
     // checks the query and selects the correct refinement functions
     let refinedData = undefined;
@@ -37,11 +40,16 @@ const dataRefine = {
         return refinedData;
       case "initList": {
         refinedData = this.refineInitList(data, query);
-
+        return refinedData;
+      }
+      case "topListByVolume24Hrs": {
+        refinedData = this.topListByVolume24Hrs(data, query);
         return refinedData;
       }
     }
-    console.log(refinedData);
+    if (!refinedData) {
+      console.error("Data invalid");
+    }
   },
 };
 

@@ -19,7 +19,7 @@ const localStorage = {
     // console.log(data);
     // console.log(query);
     window.localStorage.setItem(query, JSON.stringify(data));
-    console.log("Stored Initial List");
+    console.log(`stored: ${query}`);
   },
 };
 
