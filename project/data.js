@@ -1,16 +1,13 @@
 // this file handles data refinement
 
 const dataRefine = {
-  refineInitList: (data) => {
-    const x = data.query;
-    console.log(data.res.Data);
-    // console.log(Object.keys(data.data.Data));
-    let array = Object.keys(data.res.Data).map(function (key) {
-      return data.res.Data[key];
+  refineInitList: (data, query) => {
+    let array = Object.keys(data).map(function (key) {
+      return data[key];
     });
-    console.log(data);
 
     array = array.map((data) => {
+      // refine the data
       return {
         ticker: data.Symbol,
         id: data.Id,
@@ -22,12 +19,29 @@ const dataRefine = {
         algorithm: data.Algorithm,
       };
     });
-    array.query = data.query;
-    console.log(array);
+    array.query = query;
+
     return array;
   },
-  refineTopListByMarketCap: (data) => {
+  refineTopListByMarketCap: (data, query) => {
+    // add refinements here
+    let array = [];
     return data;
+  },
+  checkQuery: function (data, query) {
+    // checks the query and selects the correct refinement functions
+    let refinedData = undefined;
+    switch (query) {
+      case "topListByMarketCapOverview":
+        refinedData = this.refineTopListByMarketCap(data);
+        return refinedData;
+      case "initList": {
+        refinedData = this.refineInitList(data, query);
+
+        return refinedData;
+      }
+    }
+    console.log(refinedData);
   },
 };
 

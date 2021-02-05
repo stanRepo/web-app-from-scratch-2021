@@ -1,4 +1,4 @@
-import Request from "./index.js";
+import Request from "./api.js";
 import localStorage from "./cache.js";
 import dataRefine from "./data.js";
 import key from "./key.js";
@@ -22,18 +22,18 @@ const events = {
   },
 
   dataArrived: (data) => {
-    console.log(data);
+    // console.log(data);
 
     if (data.query === "initList") {
       // since the data is too large to store locally (api-response>localstorage size), I refine the data in data.js
       const refinedData = dataRefine.refineInitList(data);
-      console.log(refinedData);
+      // console.log(refinedData);
       localStorage.storeInitList(refinedData, data.query); // store in cache ->localStorage
       console.log(`${refinedData.query} - Ready for Templating`);
     }
     if (data.query === "topListByMarketCapOverview") {
       const refinedData = dataRefine.refineTopListByMarketCap(data);
-      console.log(refinedData);
+      // console.log(refinedData);
       localStorage.storeInitList(refinedData, data.query); // store in cache ->localStorage
       console.log(`${refinedData.query} - Ready for Templating`);
     }
@@ -45,13 +45,31 @@ const events = {
     localStorage.init();
   },
   retrieveInitLists: () => {
-    // API request for UIx
-    const x = new Request(endPoints.allCoinNames, key, "initList");
-    const y = new Request(
+    // API request for UI
+    const requestAllCoins = new Request(
+      endPoints.allCoinNames,
+      key,
+      "initList"
+    );
+    const requestTopListByMarketCap = new Request(
       endPoints.topListByMarketCapOverview,
       key,
       "topListByMarketCapOverview"
     );
+
+    // console.log(cryptoRequest);
+
+    // cryptoRequest.onfulfilled = function (err, data) {
+    //   if (err) {
+    //     console.error(err);
+    //     return;
+    //     // stoppen op error
+    //   }
+    //   console.log(data);
+    //   // verder met data
+    //   localStorage.storeInitList(refinedData, data.query); // store in cache ->localStorage
+    //   data = dataRefine.checkQuery(data);
+    // };
   },
 };
 

@@ -9,7 +9,7 @@ The purpose of this repo is to create a watchlist for cryptocurrency. With overv
 - [Getting started](#getting-started)
 - [Features](#features)
 - [APIs used](#apis-used)
-- [User Interaction Diagram](#user-interaction-diagram)
+- [User & Interaction Diagram](#user-interaction-diagram)
 - [Design patterns used](#design-patterns-used)
 
 # Getting-started
@@ -36,7 +36,7 @@ clone the repository and host index.html on your web server.
 ![description cryptocompare API][description]
 Cryptocompare: https://min-api.cryptocompare.com/
 
-# User Interaction Diagram
+# User & Interaction Diagram
 
 # Design patterns used
 
