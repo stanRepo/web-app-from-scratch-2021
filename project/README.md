@@ -1,6 +1,6 @@
 # Web App From Scratch 2021
 
-Link to live version
+Link to live version: https://wafs2021.netlify.app/
 
 The purpose of this repo is to create a watchlist for cryptocurrency. With overviews of different toplists. By volume (last 24h) or market cap.
 
