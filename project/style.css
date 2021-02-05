@@ -1,0 +1,13 @@
+.overviewTable {
+  border: 1px solid #c0c0c0;
+  border-collapse: collapse;
+  padding: 5px;
+}
+.overviewTable th {
+  border: 1px solid #c0c0c0;
+  padding: 5px;
+}
+.overviewTable td {
+  border: 1px solid #c0c0c0;
+  padding: 5px;
+}
