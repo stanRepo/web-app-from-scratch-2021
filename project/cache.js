@@ -1,18 +1,17 @@
 import events from "./events.js";
+import endPoints from "./endPoints.js";
 
 const localStorage = {
-  init: (query) => {
-    //query undefined
-    const cache = window.localStorage.getItem(query);
-    console.log(window.localStorage.getItem(query));
-    if (cache === undefined || null) {
-      // No data has been stored to localStorage so far. So we do this now!
-
-      events.retrieveInitLists();
-    } else {
-      console.log("retrieve data from cache");
-      const data = window.localStorage.getItem(query);
-    }
+  init: () => {
+    endPoints.forEach((endPoint) => {
+      const cache = window.localStorage.getItem(endPoint.query);
+      if (cache == null || undefined) {
+        // No data has been stored to localStorage so far. So we do this now!
+        events.retrieveInitLists(endPoint);
+      } else {
+        console.log("retrieve data from cache");
+      }
+    });
   },
   storeInitList: (data, query) => {
     window.localStorage.setItem(query, JSON.stringify(data));

@@ -14,12 +14,12 @@ const onfulfilled = function (err, data, query) {
 
   // verder met data
   data = dataRefine.checkQuery(data, query);
-  localStorage.storeInitList(data, query); // store in cache ->localStorage
   console.log(`${query} - Ready for Templating`);
+  localStorage.storeInitList(data, query); // store in cache ->localStorage
 };
 
 class Request {
-  constructor(endPoint, Key, query) {
+  constructor(endPoint, query, Key) {
     // query should be formatted as BTC,ETH,ADA,AGI etc
     this.query = query;
     this.endPoint = endPoint;
