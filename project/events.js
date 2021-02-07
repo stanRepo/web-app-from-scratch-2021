@@ -10,10 +10,6 @@ const events = {
     const input = document.querySelector(".inputTicker");
     Btn.addEventListener("click", () => {}); ////////////////////////////////////////!
   },
-  init: () => {
-    events.submitBtn();
-    localStorage.init();
-  },
   retrieveInitLists: (endPoint) => {
     const requestAPI = new Request(endPoint.url, endPoint.query, key);
   },
