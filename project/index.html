@@ -28,6 +28,10 @@
       <section class="wallet"></section>
 
       <section class="overview">
+        <div id="target">Loading...</div>
+        <script id="template" type="x-tmpl-mustache">
+          Hello {{ name }}!
+        </script>
         <table class="overviewTable">
           <caption>
             Today's cryptocurrency biggest movers
@@ -44,6 +48,7 @@
               <th>Header 8</th>
             </tr>
           </thead> -->
+
           <tbody>
             <tr>
               <td>&nbsp;</td>
@@ -251,11 +256,8 @@
         </table>
       </section>
     </main>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js"
-      integrity="sha512-HYiNpwSxYuji84SQbCU5m9kHEsRqwWypXgJMBtbRSumlx1iBB6QaxgEBZHSHEGM+fKyCX/3Kb5V5jeVXm0OglQ=="
-      crossorigin="anonymous"
-    ></script>
+
+    <script src="https://unpkg.com/mustache@latest"></script>
     <script src="endPoints.js" type="module"></script>
     <script src="key.js" type="module"></script>
     <script src="cache.js" type="module"></script>

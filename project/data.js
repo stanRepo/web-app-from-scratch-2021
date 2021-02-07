@@ -49,6 +49,9 @@ const dataRefine = {
     }
     console.log(refinedData);
   },
+  prepareForRendering: (data) => {
+    // data = .data && .query
+  },
 };
 
 export default dataRefine;

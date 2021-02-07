@@ -1,7 +1,5 @@
 //
 
-import events from "./events.js";
-import key from "./key.js";
 import dataRefine from "./data.js";
 import localStorage from "./cache.js";
 

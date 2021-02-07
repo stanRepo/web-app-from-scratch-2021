@@ -11,6 +11,9 @@ The purpose of this repo is to create a watchlist for cryptocurrency. With overv
 - [APIs used](#apis-used)
 - [User & Interaction Diagram](#user-interaction-diagram)
 - [Design patterns used](#design-patterns-used)
+- [Checklist](#Checklist)
+- [Templating Engine](#templating-engine)
+- [References And Sources](#References-And-Sources)
 
 # Getting-started
 
@@ -42,15 +45,27 @@ Cryptocompare: https://min-api.cryptocompare.com/
 
 # Checklist
 
-- [] Update wiki
-- [] User Interaction Diagram
+- [ ] Update wiki
+- [ ] User Interaction Diagram
 - [x] Retrieve basic data from all coins (Basic Data List)
 - [x] Refine Basic Data List, Store Locally.
 - [x] Retrieve toplist by marketcap
-- [] Template toplist by marketcap
+- [ ] Template toplist by marketcap
 - [x] Retrieve toplist by marketcap
-- [] Template toplist by marketcap
-- [] Create Wallet feature
-- [] Create add to Wallet functions
-- [] Create Remove from wallet functions
-- [] Template wallet
+- [ ] Template toplist by marketcap
+- [ ] Create Wallet feature
+- [ ] Create add to Wallet functions
+- [ ] Create Remove from wallet functions
+- [ ] Template wallet
+
+# Templating Engine
+
+Templating Engine Code Examples
+
+```js
+
+```
+
+# References And Sources
+
+1. https://hackernoon.com/how-to-create-new-template-engine-using-javascript-8f26313p

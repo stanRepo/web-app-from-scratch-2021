@@ -1,8 +1,5 @@
 import Request from "./api.js";
-import localStorage from "./cache.js";
-import dataRefine from "./data.js";
 import key from "./key.js";
-import endPoints from "./endPoints.js";
 
 const events = {
   submitBtn: () => {
