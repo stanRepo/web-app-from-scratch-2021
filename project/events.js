@@ -9,6 +9,7 @@ const events = {
   },
   retrieveInitLists: (endPoint) => {
     const requestAPI = new Request(endPoint.url, endPoint.query, key);
+    console.log(requestAPI);
   },
   bodyIsLoaded: (data) => {
     const e = document.querySelector("body");

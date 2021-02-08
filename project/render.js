@@ -21,14 +21,8 @@ const render = {
     return string(Stat);
   },
   render: (template, data) => {
-    // var template = document.getElementById("template").innerHTML;
-    // var rendered = Mustache.render(template, { name: "Luke" });
-    // document.getElementById("target").innerHTML = rendered;
-
     // Search for anything that is surrounded by the brackets, and replace it with the name inside data.
-    // Check for Target
     // I.E. "{{data.FullName}}", "data = {FullName:"Bitcoin"}"
-
     return template.replace(/{{(.*?)}}/g, (match) => {
       return data[match.split(/{{|}}/).filter(Boolean)[0].trim()];
     });
@@ -80,24 +74,6 @@ const render = {
     return new Function("data", "return " + compileToString(template));
   },
 };
-
-// activeer event wanneer body=loaded
-// voor elke coin, kijk welke prop gelijk is aan de inhoud van de html
-// zoek door html naar data.prop
-const bodyIsLoaded = (data) => {
-  const e = document.querySelector("body");
-
-  e.addEventListener("load", (e) => {
-    data.forEach((coin) => {
-      console.log(coin.CoinInfo.FullName);
-    });
-  });
-};
-
-// const html = document.querySelector("#data").innerText;
-// console.log(html);
-
-//console.log(render.render(render.Template(html), data));
 
 //console.log("ITWORKS" + render.render(render.Template("FullName"), data));
 
