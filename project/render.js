@@ -1,27 +1,12 @@
 import localStorage from "./cache.js";
 import templator from "./template.js";
 
-const dataByCoinNameFromLocalStorage = () => {};
-
-const displayThese = [
-  "FullName",
-  "Name",
-  "MarketCap.DISPLAY",
-  "Price.DISPLAY",
-  "Change24Hrs",
-  "ChangePCT24Hrs",
-  "Supply",
-];
-let data = {
-  FullName: "BitCoin",
-};
-
 const render = {
   displayThese: [
     "FullName",
     "Name",
-    // "MarketCap.DISPLAY",
-    // "Price.DISPLAY",
+    "MarketCap",
+    "Price.DISPLAY",
     "Change24Hrs",
     "ChangePCT24Hrs",
     "Supply",
@@ -114,6 +99,6 @@ const bodyIsLoaded = (data) => {
 
 //console.log(render.render(render.Template(html), data));
 
-console.log("ITWORKS" + render.render(render.Template("FullName"), data));
+//console.log("ITWORKS" + render.render(render.Template("FullName"), data));
 
 export default render;

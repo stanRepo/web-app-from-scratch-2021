@@ -19,7 +19,7 @@ const localStorage = {
           //console.log(data);
           // in elke coin kijken
           data.forEach((coin, i) => {
-            let element = document.querySelectorAll(".data"); // select HTML Element to render
+            let element = document.querySelector(".data"); // select HTML Element to render
             console.log(i);
             console.log(element);
             console.log(document.querySelectorAll(".data")[0]);
@@ -27,7 +27,7 @@ const localStorage = {
             console.log(templatingLayout);
             let parentElement = document.querySelector("tbody"); // select parent
 
-            let dataHMTLString = element[i].innerHTML.toString(); // Create Template
+            let dataHMTLString = element.innerHTML.toString(); // Create Template
 
             const renderedElement = render.render(dataHMTLString, coin); // create next coin layout
 
@@ -47,7 +47,7 @@ const localStorage = {
             // const template = render.Template(coin.)
             console.log(element);
             console.log(parentElement.children[i]);
-            element = parentElement.removeChild(parentElement.children[i]);
+            //element = parentElement.removeChild(parentElement.children[i]);
             parentElement.appendChild(templatingLayout);
             console.log(element);
           });

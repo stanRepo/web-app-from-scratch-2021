@@ -6,17 +6,14 @@ const templator = {
     console.log(query);
     let arr = [];
     data = JSON.parse(data);
-    console.log(data[0]);
+    // console.log(data[0]);
     data.forEach((coin, i) => {
       if (coin.CoinInfo && coin.DISPLAY && coin.RAW) {
         arr.push({
           FullName: coin.CoinInfo.FullName,
           Name: coin.CoinInfo.Name,
-          MarketCap: {
-            DISPLAY: coin.DISPLAY.EUR.MKTCAP,
-            RAW: coin.RAW.EUR.MKTCAP,
-          },
-          Price: { DISPLAY: coin.DISPLAY.EUR.PRICE, RAW: coin.RAW.EUR.PRICE },
+          MarketCap: coin.DISPLAY.EUR.MKTCAP,
+          Price: coin.DISPLAY.EUR.PRICE,
           Change24Hrs: coin.RAW.EUR.CHANGE24HOUR,
           ChangePCT24Hrs: coin.RAW.EUR.CHANGEPCT24HOUR,
           Supply: coin.DISPLAY.EUR.SUPPLY,
@@ -25,7 +22,7 @@ const templator = {
         console.log("data inconsistent");
       }
     });
-    //console.log(arr);
+    console.log(arr[0]);
 
     return arr;
   },

@@ -28,10 +28,6 @@
       <section class="wallet"></section>
 
       <section class="overview">
-        <div id="target">Loading...</div>
-        <script id="template" type="x-tmpl-mustache">
-          Hello {{ name }}!
-        </script>
         <table class="overviewTable">
           <caption>
             Today's cryptocurrency biggest movers
@@ -40,20 +36,20 @@
           <thead>
             <tr>
               <th>Coin name</th>
-              <th>Ticker</th>
-              <th>Market Capitalization</th>
+              <th class="hideOnSmallScreen">Ticker</th>
               <th>Price</th>
-              <th>Cirulating Supply</th>
+              <th>Market Capitalization</th>
+              <th class="hideOnSmallScreen">Cirulating Supply</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr class="data">
+            <tr class="data display-none">
               <td>&nbsp;{{ FullName }}</td>
-              <td>&nbsp;{{ Name }}</td>
-              <td>&nbsp;{{ MarketCap.DISPLAY }}</td>
-              <td>&nbsp;{{ Price.DISPLAY }}</td>
-              <td>&nbsp;{{ Supply }}</td>
+              <td class="hideOnSmallScreen">&nbsp;{{ Name }}</td>
+              <td>&nbsp;{{ Price }}</td>
+              <td>&nbsp;{{ MarketCap }}</td>
+              <td class="hideOnSmallScreen">&nbsp;{{ Supply }}</td>
             </tr>
           </tbody>
         </table>
