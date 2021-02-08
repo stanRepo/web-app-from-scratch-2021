@@ -23,6 +23,7 @@ const localStorage = {
             newRowElement.setAttribute("id", `data${i}`); // set a custom ID (unused atm)
             newRowElement.innerHTML = renderedElement; // set innerHTML to ne
             parentElement.insertAdjacentElement("beforeend", newRowElement); // add new element to parentElement
+            newRowElement.classList.add(coin.Name, "coin");
           });
         }
         console.log(`Retrieved ${endPoint.query}. Data from Cache`);
@@ -32,7 +33,10 @@ const localStorage = {
   },
   storeInitList: (data, query) => {
     window.localStorage.setItem(query, JSON.stringify(data));
-    console.log(`chached: ${query}`);
+    console.log(`cached: ${query}`);
+  },
+  clear: () => {
+    window.localStorage.clear();
   },
 };
 

@@ -223,5 +223,3 @@ if (typeof module == "undefined") {
 } else {
   module.exports = Routie(window, true);
 }
-
-export default Routie;

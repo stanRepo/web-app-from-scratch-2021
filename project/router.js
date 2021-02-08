@@ -1,30 +1,27 @@
-import Routie from "./routie.js";
-console.log(Routie);
-// const router = {
-//   init: () => {
-//     //const hash = window.location.hash;
+// import Routie from "./routie.js";
+// console.log(routie);
+import localStorage from "./cache.js";
+const router = {
+  init: () => {
+    //const hash = window.location.hash;
 
-//     //console.log(window.location.pathname);
-//     console.log(router.routes);
-//     //Routie(router.routes);
-//   },
-//   routes: {
-//     "": function () {
-//       // this is the home route
-//       console.log("@home");
-//     },
-//     "/details": function () {
-//       console.log("@details");
-//     },
-//   },
-// };
-Routie({
-  "*": function () {
-    // this is the home route
-    console.log("@home");
+    //console.log(window.location.pathname);
+
+    //Routie(router.routes);
+    // console.log(window);
+
+    routie({
+      "": function () {
+        // this is the home route
+        const cache = localStorage.init();
+      },
+      details: function () {
+        console.log("@details");
+      },
+      "*": function () {
+        console.log("404");
+      },
+    });
   },
-  "/details": function () {
-    console.log("@details");
-  },
-});
+};
 export default router;
