@@ -1,23 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+table {
+  background-color: rgb(76, 0, 255);
+}
+thead {
+  color: white;
+}
 .overviewTable {
   border: 1px solid #c0c0c0;
   border-collapse: collapse;
   padding: 5px;
 }
 .overviewTable th {
-  border: 1px solid #c0c0c0;
+  /* border: 1px solid #000000; */
   padding: 5px;
-}
-.overviewTable td {
-  border: 1px solid #c0c0c0;
-  padding: 5px;
+
+  font-size: x-large;
 }
 
 .display-none {
   display: none;
-}
-body {
-  margin: 0;
-  padding: 0;
 }
 
 .overview {
@@ -25,9 +31,58 @@ body {
   flex-direction: column;
   align-items: center;
 }
+td {
+  text-align: center;
+  padding: 5px;
+}
 
-@media screen and (max-width: 510px) {
+.overviewTable td {
+  /* border: 0px solid #f7323200; */
+  padding: 7px;
+  background: #dcfffa;
+  font-size: large;
+  font-weight: 900;
+}
+/* Table Column # */
+tr td:nth-child(1) {
+  font-size: 15px;
+}
+/* Table Column Coin Fullname */
+tr td:nth-child(2) {
+  font-family: monospace;
+  text-align: left;
+}
+/* Table Column Ticker */
+tr td:nth-child(3) {
+  font-family: monospace;
+  font-size: 30px / 10vw;
+}
+/* Table Column Price */
+td img {
+  max-width: 20px;
+  max-height: 20px;
+}
+/* Table Column MarketCap */
+/* Table Column Circulating Supply */
+/*  */
+details {
+  padding: 5px 10px;
+  font-size: medium;
+  max-width: 220px;
+}
+
+@media screen and (max-width: 680px) {
   .hideOnSmallScreen {
+    display: none;
+  }
+}
+@media screen and (max-width: 420px) {
+  .hideOnSmallerScreen {
+    display: none;
+  }
+}
+@media screen and (max-width: 950px) {
+  .hideOnMediumScreen {
     display: none;
   }
 }

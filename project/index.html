@@ -13,7 +13,7 @@
       </section>
       <!-- Input section for searching Tickers and their data -->
 
-      <a href="#details">#details</a>
+      <a href="#details/BTC">#details</a>
       <a href="#">home</a>
       <a href="#adadadas">router wildcard test</a>
       <button id="clearCache">Empty Cache</button>
@@ -40,29 +40,58 @@
 
           <thead>
             <tr>
+              <th>#</th>
               <th>Coin name</th>
               <th class="hideOnSmallScreen">Ticker</th>
               <th>Price</th>
-              <th>Market Capitalization</th>
+              <th class="hideOnSmallerScreen">Market Capitalization</th>
               <th class="hideOnSmallScreen">Cirulating Supply</th>
+              <th class="hideOnMediumScreen">Max Supply</th>
+              <th class="hideOnMediumScreen">
+                Calculate buy-In Position
+                <input
+                  id="positionCalc"
+                  type="number"
+                  placeholder="# position"
+                />
+              </th>
             </tr>
           </thead>
 
           <tbody>
             <tr class="data display-none">
-              <td>&nbsp;{{ FullName }}</td>
+              <td>{{ listNumber }}</td>
+              <td>
+                &nbsp;
+                <img src="{{ imageUrl }}" />
+                <a href="index.html#details/{{ Name }}">{{ FullName }} </a>
+                <details>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Eligendi, quidem!
+                </details>
+                <!-- <img
+                    src="imageNotFound.png"
+                    alt="Image not found"
+                    onerror="this.onerror=null;this.src='{{ FullName }}';"
+                    /> -->
+              </td>
               <td class="hideOnSmallScreen">&nbsp;{{ Name }}</td>
               <td>&nbsp;{{ Price }}</td>
-              <td>&nbsp;{{ MarketCap }}</td>
-              <td class="hideOnSmallScreen">&nbsp;{{ Supply }}</td>
+              <td class="hideOnSmallerScreen MarketCap">
+                &nbsp;{{ MarketCap }}
+              </td>
+              <td class="hideOnSmallScreen">&nbsp; {{ Supply }}</td>
+              <td class="hideOnMediumScreen">&nbsp;{{ maxSupply }}</td>
+              <td class="hideOnMediumScreen">&nbsp; position</td>
+              <td class="display-none MarketCapRAW">{{ MarketCapRAW }}</td>
             </tr>
           </tbody>
         </table>
       </section>
     </main>
-    <!-- <script src="https://unpkg.com/mustache@latest"></script> -->
-    <script src="routie.js" type="module"></script>
+
     <script src="router.js" type="module"></script>
+    <script src="routie.js" type="module"></script>
     <script src="template.js" type="module"></script>
     <script src="endPoints.js" type="module"></script>
     <script src="key.js" type="module"></script>

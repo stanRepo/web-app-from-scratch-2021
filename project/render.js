@@ -73,6 +73,10 @@ const render = {
   compile: (template) => {
     return new Function("data", "return " + compileToString(template));
   },
+  emptyTable: () => {
+    const el = document.querySelector("tbody");
+    el.innerHTML = "";
+  },
 };
 
 //console.log("ITWORKS" + render.render(render.Template("FullName"), data));

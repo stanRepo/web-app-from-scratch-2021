@@ -10,6 +10,7 @@ const app = {
     router.init();
     // add event listener
     events.submitBtn();
+    events.positionCalc();
     // activate localStorage
     // const cache = localStorage.init();
     // console.log(cache);

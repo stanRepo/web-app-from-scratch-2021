@@ -12,7 +12,11 @@ const localStorage = {
         events.retrieveInitLists(endPoint);
       } else {
         if (endPoint.query === "topListByMarketCapOverview") {
-          const data = templator.createDataSetMarketCapOverview(endPoint.query); // Get Data
+          const data = templator.createDataSetMarketCapOverview(
+            window.localStorage.getItem(endPoint.query)
+          ); // Get Data
+
+          // const otherData = templator.createDataSetMarketCapOverview(window.localStorage.getItem())
 
           data.forEach((coin, i) => {
             let element = document.querySelector(".data"); // select HTML Element to render
@@ -37,6 +41,16 @@ const localStorage = {
   },
   clear: () => {
     window.localStorage.clear();
+  },
+  retrieveSingleCoinData: (id) => {
+    let list = window.localStorage.getItem("initList");
+    console.log("running");
+    if (list !== undefined || null) {
+      return list;
+    } else {
+      // no list found in localStorage // throw error
+      console.error("Could not Retrieve initList from windows.localStorage");
+    }
   },
 };
 
