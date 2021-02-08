@@ -10,6 +10,18 @@ const events = {
   retrieveInitLists: (endPoint) => {
     const requestAPI = new Request(endPoint.url, endPoint.query, key);
   },
+  bodyIsLoaded: (data) => {
+    const e = document.querySelector("body");
+
+    console.log(data);
+
+    e.addEventListener("load", (e) => {
+      console.log("EVENT FIIRED");
+      data.forEach((coin) => {
+        console.log(coin.CoinInfo.FullName);
+      });
+    });
+  },
 };
 
 export default events;
