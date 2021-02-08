@@ -26,9 +26,13 @@ const localStorage = {
             const templatingLayout = document.querySelectorAll(".data")[0];
             console.log(templatingLayout);
             let parentElement = document.querySelector("tbody"); // select parent
+
             let dataHMTLString = element[i].innerHTML.toString(); // Create Template
+
             const renderedElement = render.render(dataHMTLString, coin); // create next coin layout
+
             const newRowElement = document.createElement("tr"); // create new Row Element
+
             newRowElement.setAttribute("id", `data${i}`);
             console.log(parentElement);
 
