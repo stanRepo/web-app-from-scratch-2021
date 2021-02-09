@@ -1,35 +1,37 @@
-import render from "./render.js";
-console.log(!render);
+import render from "./renderEngine.js";
+//console.log(!render);
 const templator = {
   createDataSetMarketCapOverview: (data) => {
     // console.log(query);
+
     let arr = [];
     data = JSON.parse(data);
-    console.log(data[0]);
+    console.log(data);
 
     data.forEach((coin, i) => {
-      if (coin.CoinInfo && coin.DISPLAY && coin.RAW) {
-        arr.push({
-          FullName: coin.CoinInfo.FullName,
-          Name: coin.CoinInfo.Name,
-          MarketCap: coin.DISPLAY.EUR.MKTCAP,
-          MarketCapRAW: coin.RAW.EUR.MKTCAP,
-          Price: coin.DISPLAY.EUR.PRICE,
-          Change24Hrs: coin.RAW.EUR.CHANGE24HOUR,
-          ChangePCT24Hrs: coin.RAW.EUR.CHANGEPCT24HOUR,
-          Supply: coin.DISPLAY.EUR.SUPPLY,
-          listNumber: i + 1,
-          imageUrl: `https://www.cryptocompare.com/${coin.CoinInfo.ImageUrl}`,
-          // overview url
-          maxSupply: templator.maxSupplyValidate(coin.CoinInfo.MaxSupply),
-          linkToCC: "https://www.cryptocompare.com/${coin.CoinInfo.Url}",
-          //
-        });
-      } else {
-        console.log("data inconsistent");
-      }
+      // console.log(coin.CoinInfo.ProofType);
+      arr.push({
+        FullName: coin.FullName,
+        Name: coin.Name,
+        MarketCap: coin.DISPLAY.USD.MKTCAP,
+        MarketCapRAW: coin.RAW.USD.MKTCAP,
+        Price: coin.DISPLAY.USD.PRICE,
+        Change24Hrs: coin.RAW.USD.CHANGE24HOUR,
+        ChangePCT24Hrs: coin.RAW.USD.CHANGEPCT24HOUR,
+        Supply: coin.DISPLAY.USD.SUPPLY,
+        listNumber: i + 1,
+        imageUrl: `https://www.cryptocompare.com/${coin.ImageUrl}`,
+        // overview url
+        maxSupply: templator.maxSupplyValidate(coin.MaxSupply),
+        linkToCC: "https://www.cryptocompare.com/${coin.CoinInfo.Url}",
+        ProofType: coin.ProofType,
+        Algorithm: coin.Algorithm,
+        AssetLaunchDate: coin.AssetLaunchDate,
+        Description: coin.Description,
+        //
+      });
     });
-    console.log(arr[0]);
+    //console.log(arr[0]);
 
     return arr;
   },

@@ -1,6 +1,7 @@
-import Request from "./api.js";
+import requestAPI from "./api.js";
 import key from "./key.js";
 import localStorage from "./cache.js";
+import endPoints from "./endPoints.js";
 const events = {
   submitBtn: () => {
     const Btn = document.querySelector(".searchBtn");
@@ -46,8 +47,12 @@ const events = {
       });
     });
   },
-  retrieveInitLists: (endPoint) => {
-    const requestAPI = new Request(endPoint.url, endPoint.query, key);
+
+  retrieveInitLists: async (endPoint) => {
+    // console.log(endPoint);
+    const requestAPIData = await requestAPI(endPoint.url, endPoint.query, key);
+    // console.log(requestAPIData);
+    return requestAPIData;
   },
   bodyIsLoaded: (data) => {
     const e = document.querySelector("body");

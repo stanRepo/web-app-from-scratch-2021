@@ -6,6 +6,7 @@ body {
 }
 table {
   background-color: rgb(76, 0, 255);
+  margin: 0vw 5vw;
 }
 thead {
   color: white;

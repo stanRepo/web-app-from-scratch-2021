@@ -1,7 +1,6 @@
 import events from "./events.js";
 import localStorage from "./cache.js";
-import render from "./render.js";
-import createTemplate from "./render.js";
+import render from "./renderEngine.js";
 import router from "./router.js";
 
 const app = {
