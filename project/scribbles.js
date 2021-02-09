@@ -58,4 +58,5 @@ const cryptoRequest = new Request('crypo-url', {
     }
   
     onfulfilled() {}
-  }
+}
+  

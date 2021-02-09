@@ -1,75 +1,63 @@
 import Request from "./api.js";
-import localStorage from "./cache.js";
-import dataRefine from "./data.js";
 import key from "./key.js";
-
-/////////////////////// Add to seperate file during refatoring
-const endPoints = {
-  allCoinNames: "https://min-api.cryptocompare.com/data/all/coinlist", // when use also saves to localStorage
-
-  singleCoin: "https://min-api.cryptocompare.com/data/pricemulti?", //fsyms=BTC,ETH&
-  topListByMarketCapOverview:
-    "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=80&tsym=EUR",
-  subject: "fsyms=", // currencies seperated by commas followed by an ampersant (&)
-  valuedIn: "tsyms=", //tsyms=USD,EUR,
-};
-///////////////////////
+import localStorage from "./cache.js";
 const events = {
   submitBtn: () => {
     const Btn = document.querySelector(".searchBtn");
     const input = document.querySelector(".inputTicker");
+
+    const clearBtn = document.querySelector("#clearCache");
+    clearBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.clear();
+      console.log("cache cleared");
+    });
     Btn.addEventListener("click", () => {}); ////////////////////////////////////////!
   },
+  positionCalc: () => {
+    const positionCalc = document.querySelector("#positionCalc");
+    positionCalc.addEventListener("keyup", (e) => {
+      let coins = document.querySelectorAll(".coin");
+      coins = Array.from(coins);
+      coins.forEach((coin) => {
+        // let marketCap = document.querySelector(`#${coin.id}:nth-child(4)`);
+        let marketCap = document.querySelector(`#${coin.id}`).children[8]
+          .innerText;
+        //console.log(marketCap);
+        // console.log(position);
+        // marketCap = marketCap.querySelector(".marketCap");
+        // console.log(marketCap);
+        // debugger;
+        //  console.log(typeof marketCap);
+        if (marketCap !== "No max supply") {
+          // console.log(`${coin} = number`);
+          let position = marketCap / e.target.value;
+          //console.log(position);
+          let positionEl = document.querySelector(`#${coin.id}`).children[7];
+          positionEl.innerText = `€${position.toFixed(2).toString()}`;
 
-  dataArrived: (data) => {
-    // console.log(data);
-
-    if (data.query === "initList") {
-      // since the data is too large to store locally (api-response>localstorage size), I refine the data in data.js
-      const refinedData = dataRefine.refineInitList(data);
-      // console.log(refinedData);
-      localStorage.storeInitList(refinedData, data.query); // store in cache ->localStorage
-      console.log(`${refinedData.query} - Ready for Templating`);
-    }
-    if (data.query === "topListByMarketCapOverview") {
-      const refinedData = dataRefine.refineTopListByMarketCap(data);
-      // console.log(refinedData);
-      localStorage.storeInitList(refinedData, data.query); // store in cache ->localStorage
-      console.log(`${refinedData.query} - Ready for Templating`);
-    }
+          // if (position <= 100000000) {
+          //   console.log("input is good");
+          // } else {
+          //   position = "inputValue is too high";
+          //   console.error("inputValue is too high");
+          // }
+        }
+      });
+    });
   },
-  init: () => {
-    // fires on pageload.
-
-    events.submitBtn();
-    localStorage.init();
+  retrieveInitLists: (endPoint) => {
+    const requestAPI = new Request(endPoint.url, endPoint.query, key);
   },
-  retrieveInitLists: () => {
-    // API request for UI
-    const requestAllCoins = new Request(
-      endPoints.allCoinNames,
-      key,
-      "initList"
-    );
-    const requestTopListByMarketCap = new Request(
-      endPoints.topListByMarketCapOverview,
-      key,
-      "topListByMarketCapOverview"
-    );
-
-    // console.log(cryptoRequest);
-
-    // cryptoRequest.onfulfilled = function (err, data) {
-    //   if (err) {
-    //     console.error(err);
-    //     return;
-    //     // stoppen op error
-    //   }
-    //   console.log(data);
-    //   // verder met data
-    //   localStorage.storeInitList(refinedData, data.query); // store in cache ->localStorage
-    //   data = dataRefine.checkQuery(data);
-    // };
+  bodyIsLoaded: (data) => {
+    const e = document.querySelector("body");
+    console.log(data);
+    e.addEventListener("load", (e) => {
+      console.log("EVENT FIIRED");
+      data.forEach((coin) => {
+        console.log(coin.CoinInfo.FullName);
+      });
+    });
   },
 };
 

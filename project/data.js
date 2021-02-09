@@ -28,20 +28,29 @@ const dataRefine = {
     let array = [];
     return data;
   },
+  topListByVolume24Hrs: function (data, query) {
+    return data;
+  },
   checkQuery: function (data, query) {
     // checks the query and selects the correct refinement functions
     let refinedData = undefined;
     switch (query) {
-      case "topListByMarketCapOverview":
-        refinedData = this.refineTopListByMarketCap(data);
-        return refinedData;
       case "initList": {
         refinedData = this.refineInitList(data, query);
-
+        return refinedData;
+      }
+      case "topListByMarketCapOverview":
+        refinedData = this.refineTopListByMarketCap(data, query);
+        return refinedData;
+      case "topListByVolume24Hrs": {
+        refinedData = this.topListByVolume24Hrs(data, query);
         return refinedData;
       }
     }
     console.log(refinedData);
+  },
+  prepareForRendering: (data) => {
+    // data = .data && .query
   },
 };
 
