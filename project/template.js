@@ -17,7 +17,7 @@ const templator = {
         MarketCapRAW: coin.RAW.USD.MKTCAP,
         Price: coin.DISPLAY.USD.PRICE,
         Change24Hrs: coin.RAW.USD.CHANGE24HOUR,
-        ChangePCT24Hrs: coin.RAW.USD.CHANGEPCT24HOUR,
+        ChangePCT24Hrs: coin.RAW.USD.CHANGEPCT24HOUR.toFixed(2),
         Supply: coin.DISPLAY.USD.SUPPLY,
         listNumber: i + 1,
         imageUrl: `https://www.cryptocompare.com/${coin.ImageUrl}`,
