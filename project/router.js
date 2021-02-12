@@ -10,10 +10,9 @@ const router = {
     // console.log(window);
 
     routie({
-      "": function () {
+      "": async function () {
         // this is the home route
         console.log("@home");
-        const cache = localStorage.init();
       },
       "details/:id": function (id) {
         console.log("@details");
