@@ -16,14 +16,6 @@ class App {
       events.positionCalc();
     };
 
-    this.cache = {
-      history: () => {
-        const x = window.localStorage.setItem("test", "test"); // test item
-        const cache = this.state.history();
-        this.storedData = cache;
-        return cache;
-      },
-    };
     this.errorHandler = (obj) => {
       if (obj == undefined || false || null) {
         console.error("obj is undefined");
@@ -56,9 +48,13 @@ class store extends App {
         window.localStorage.setItem(key, string);
         // console.error(`Failed Saving ${key} to Storage`);
       },
-      stateInit: () => {},
+      stateGet: (key) => {
+        return windows.localStorage.getItem(key);
+      },
+
       currentURL: window.location,
       stateRead: window.localStorage,
+      listsStored: 0,
     };
   }
 }
@@ -84,8 +80,22 @@ class API extends store {
             return res.json();
           })
           .then((data) => {
-            this.state.stateCreate(endPoint.query, data.Data);
-            console.log(data);
+            try {
+              this.state.stateCreate(endPoint.query, data.Data);
+              this.state.listsStored++;
+            } catch {
+              console.log("listerror, refining");
+              data = this.templates.mapInitList(data.Data);
+              this.state.stateCreate(endPoint.query, data);
+              this.state.listsStored++;
+            }
+            console.log(this.state.stateRead.length);
+            console.log(this.state.listsStored);
+            if (this.state.listsStored === endPoints.length) {
+              console.log("stored all lists");
+              this.templates.combineLists();
+            }
+
             return this.data;
           })
           .catch((err) => {
@@ -98,9 +108,6 @@ class API extends store {
         });
       },
     };
-    // this.request.fetchEndPoints(endPoints);
-
-    //this.request.fetchEndPoints(endPoints);
   }
 }
 const router = {
@@ -117,13 +124,6 @@ const router = {
       "details/:id": function (id) {
         console.log("@details");
         console.log(id);
-        // const cache = localStorage.init();
-
-        // check if coin exists in localStorage
-        // let data = localStorage.retrieveSingleCoinData(id);
-        // data = JSON.parse(data);
-        // console.log(data[0]);
-        // data.forEach((coin) => {});
       },
 
       "*": function () {
@@ -133,28 +133,41 @@ const router = {
   },
 };
 
-const templates = {
-  coinsCombined: () => {},
-};
+class templates extends API {
+  constructor(endPoints) {
+    super(endPoints);
+    this.templates = {
+      mapInitList: (list) => {
+        const array = Object.entries(list).map((data) => {
+          // refine the data
+          return {
+            ticker: data[1].Symbol,
+            id: data[1].Id,
+            coinName: data[1].CoinName,
+            imageUrl: data[1].ImageUrl,
+            linkToCC: data[1].Url,
+            Description: data[1].Description,
+            ProofType: data[1].ProofType,
+            Algorithm: data[1].Algorithm,
 
-// console.log(window.localStorage);
-const app = new API(endPoints);
+            FullName: data[1].FullName,
+          };
+        });
+        //  array.query = query;
+        return array;
+      },
+      combineLists: () => {
+        let arr = [];
+        const stored = this.state.stateRead;
+        let mainList = this.state.stateGet("initList");
+      },
+    };
+
+    console.log(this);
+  }
+}
+
+const app = new templates(endPoints);
 // app.start();
 router.routes(app);
 console.log(app);
-//console.log(app.state.stateRead());
-
-// const app = {
-//   start: () => {
-//     console.log("running app.js");
-//     router.init();
-//     // add event listener
-//     events.submitBtn();
-//     events.positionCalc();
-//     // activate localStorage
-//     // const cache = localStorage.init();
-//     // console.log(cache);
-//   },
-// };
-// app.start();
-// //export default app;
