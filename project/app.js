@@ -31,9 +31,8 @@ class App {
   }
 }
 
-class store extends App {
-  constructor(endPoints) {
-    super(endPoints);
+class store {
+  constructor() {
     this.state = {
       stateDelete: (key) => {
         window.localStorage.removeItem(key);
