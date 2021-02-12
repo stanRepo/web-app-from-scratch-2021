@@ -13,9 +13,6 @@ const router = {
       "": async function () {
         // this is the home route
         console.log("@home");
-
-        const cache = await localStorage.init();
-        console.log("when does it happen");
       },
       "details/:id": function (id) {
         console.log("@details");

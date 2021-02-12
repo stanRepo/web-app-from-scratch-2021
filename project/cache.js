@@ -1,12 +1,16 @@
 import events from "./events.js";
-import endPoints from "./endPoints.js";
+// import endPoints from "./endPoints.js";
 import templator from "./template.js";
 import render from "./renderEngine.js";
 import dataRefine from "./data.js";
 let allLists = [];
 let newCoin = {};
 const localStorage = {
-  init: () => {
+  init2: (endPoints) => {
+    return window.localStorage;
+    debugger;
+  },
+  init: (endPoints) => {
     let coinListTotal = [];
     endPoints.forEach(async (endPoint) => {
       const cache = window.localStorage.getItem(endPoint.query);

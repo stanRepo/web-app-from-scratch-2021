@@ -61,4 +61,4 @@ class Request {
   }
 }
 
-export default requestAPI;
+export default Request;
