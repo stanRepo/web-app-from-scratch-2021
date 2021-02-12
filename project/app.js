@@ -49,7 +49,8 @@ class store extends App {
         // console.error(`Failed Saving ${key} to Storage`);
       },
       stateGet: (key) => {
-        return windows.localStorage.getItem(key);
+        const data = window.localStorage.getItem(key);
+        return data;
       },
 
       currentURL: window.location,
@@ -92,6 +93,7 @@ class API extends store {
             console.log(this.state.stateRead.length);
             console.log(this.state.listsStored);
             if (this.state.listsStored === endPoints.length) {
+              // all lists were stored
               console.log("stored all lists");
               this.templates.combineLists();
             }
@@ -116,7 +118,7 @@ const router = {
       "": async function () {
         // this is the home route
         console.log("@home");
-        console.log(app);
+        // console.log(app);
         if (app.state.stateRead.length < 1) {
           app.request.fetchEndPoints(endPoints);
         }
@@ -160,10 +162,13 @@ class templates extends API {
         let arr = [];
         const stored = this.state.stateRead;
         let mainList = this.state.stateGet("initList");
+        // console.log(mainList);
+
+        mainList.forEach((coin) => {});
       },
     };
 
-    console.log(this);
+    // console.log(this);
   }
 }
 
