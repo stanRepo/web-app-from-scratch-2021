@@ -43,10 +43,12 @@ const localStorage = {
         // console.log(coinListTotal);
 
         const temp = allLists[0];
+        // I want to create a list that hold as much information as possible about the coins that are selected.
+        // I loop through the list to find the initList which holds information about all coins.
 
         if (
           endPoint.query !== "initList" &&
-          window.localStorage.getItem("coinListTotal")
+          window.localStorage.getItem("coinListTotal") // if current list is not initList or the list that holds the totals
         ) {
           console.log(`combining ${endPoint.query}`);
 
