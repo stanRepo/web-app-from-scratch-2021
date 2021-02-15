@@ -1,64 +1,56 @@
-//
+import store from "./store.js";
+import Templates from "./templates.js";
 
-import dataRefine from "./data.js";
-import localStorage from "./cache.js";
-
-const onfulfilled = function (err, data, query) {
-  if (err) {
-    console.error(err);
-    return;
-    // stoppen op error
+export default class API {
+  constructor(endPoints, store) {
+    this.store = store;
+    this.template = new Templates();
+    this.data = [];
   }
-  // console.log(data);
-  // verder met data
-  // data = dataRefine.checkQuery(data, query);
-  // console.log(data);
-  console.log(`${query} - Ready for Templating`);
-  // localStorage.storeInitList(data, query); // store in cache ->localStorage
-  // const allData = dataRefine.refineAllLists(data, query);
-  // console.log(allData);
-  // localStorage.storeInitList(allData, "allData");
-  return data;
-};
-const requestAPI = async (endPoint, query, key) => {
-  // console.log(endPoint);
-  const data = await fetch(`${endPoint}`);
-  const JSONdata = data.json();
-  return onfulfilled(null, JSONdata, query);
-  // .then((res) => {
-  //   return res.json();
-  // })
-  // .then((data) => {
-  //   // this.data = data.Data;
-  //   const dataa = onfulfilled(null, data.Data, query);
-  //   console.log(dataa);
-  //   return dataa;
-  // })
-  // .catch((err) => {
-  //   onfulfilled(err);
-  // });
-};
-class Request {
-  constructor(endPoint, query, Key) {
-    // query should be formatted as BTC,ETH,ADA,AGI etc
-    this.query = query;
-    this.endPoint = endPoint;
-    this.query = query;
-    this.Key = Key;
-    this.data = {};
 
-    fetch(`${endPoint}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        this.data = data.Data;
-        onfulfilled(null, this.data, this.query);
-      })
-      .catch((err) => {
-        onfulfilled(err);
-      });
-  }
+  fetch = (endPoint, key) => {
+    return new Promise((resolve, reject) => {
+      const data = fetch(`${endPoint.url}`)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          this.data = {
+            data: data.Data,
+            query: endPoint.query,
+          };
+
+          try {
+            this.store.stateCreate(endPoint.query, this.data);
+          } catch {
+            console.log("listerror, refining"); // 1 list is too big to store locally right now. So I use .map() to Filter it
+
+            const refinedData = this.template.mapInitList(
+              data.Data,
+              endPoint.query
+            );
+            //console.log(refinedData);
+            if (refinedData) {
+              this.data = {
+                data: refinedData,
+                query: endPoint.query,
+              };
+              this.store.stateCreate(endPoint.query, this.data);
+              console.log("data refined");
+            } else {
+              data.query = endPoint.query;
+              console.log("All Lists Retrieved And Stored");
+              //resolve(lists);
+            }
+          }
+          //console.log(this.data);
+
+          resolve(this.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    });
+  };
+  fetchEndPoints = async (endPoints) => {};
 }
-
-export default Request;
