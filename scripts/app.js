@@ -1,4 +1,4 @@
-import endPoints from "./modules/endPoints.js";
+import endPoints from "./modules/constant/endPoints.js";
 import Store from "./modules/store.js";
 import Router from "./modules/router.js";
 

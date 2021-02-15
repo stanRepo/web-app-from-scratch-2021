@@ -42,8 +42,8 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Coin name</th>
-              <th class="hideOnSmallScreen">Ticker</th>
+              <th></th>
+              <th class="hideOnSmallScreen">Name</th>
               <th>Price</th>
               <th class="hideOnSmallerScreen">Market Capitalization</th>
               <th class="hideOnSmallScreen">Cirulating Supply</th>
@@ -64,21 +64,26 @@
               <td>{{ listNumber }}</td>
               <td>
                 &nbsp;
-                <img src="{{ imageUrl }}" />
-                <a href="index.html#details/{{ Name }}">{{ FullName }} </a>
-                <details>
-                  <h4>% Change Last 24 Hours:<b>{{ ChangePCT24Hrs }}</b></h4>
-                  <br />
+                <a href="index.html#details/{{ Name }} "
+                  ><object data="{{ imageUrl }}" type="image/png">
+                    <img
+                      src="../assets/imageNotFound.png"
+                      alt="image not found, display fallback image"
+                    /></object
+                ></a>
 
-                  <!-- Description: {{Description}} -->
-                </details>
+                <a href="index.html#details/{{ Name }}">{{ FullName }} </a>
+
                 <!-- <img
                     src="imageNotFound.png"
                     alt="Image not found"
                     onerror="this.onerror=null;this.src='{{ FullName }}';"
                     /> -->
               </td>
-              <td class="hideOnSmallScreen">&nbsp;{{ Name }}</td>
+              <td class="hideOnSmallScreen">
+                &nbsp;{{ Name }}
+                <a href="index.html#details/{{ Name }}">{{ FullName }} </a>
+              </td>
               <td>&nbsp;{{ Price }}</td>
               <td class="hideOnSmallerScreen MarketCap">
                 &nbsp;{{ MarketCap }}
@@ -104,9 +109,15 @@
               Asset Launch Date: {{ AssetLaunchDate }} <br />
             </li>
             <li>
-              <h3>Description</h3>
-              {{ Description }}
+              <h3>Change 24H</h3>
+              <p>{{ Change24Hrs }}</p>
+              <p>{{ ChangePCT24Hrs }}</p>
             </li>
+            <li>
+              <h3>Description</h3>
+              <p class="coinDiscription">{{ Description }}</p>
+            </li>
+            <li></li>
           </ul>
         </ul>
       </section>

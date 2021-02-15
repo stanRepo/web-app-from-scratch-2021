@@ -1,6 +1,6 @@
 import Index from "./index.js";
 import Details from "./details.js";
-import endPoints from "./endPoints.js";
+import endPoints from "./constant/endPoints.js";
 
 export default class Router {
   constructor(endPoints) {
