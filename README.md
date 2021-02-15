@@ -13,6 +13,7 @@ The purpose of this repo is to create a watchlist for cryptocurrency. With overv
 - [Design patterns used](#design-patterns-used)
 - [Checklist](#Checklist)
 - [Templating Engine](#templating-engine)
+- [Router](#Router)
 - [References And Sources](#References-And-Sources)
 
 # Getting-started
@@ -66,6 +67,8 @@ If everything goes as planned it should look something like this:
 - [x] Refine Basic Data List, Store Locally.
 - [x] Retrieve toplist by marketcap
 - [x] Template toplist by marketcap
+- [ ] Add feature that shows the highest buy-in position possible based on buy-in capital on hands.
+      (something like: if I spend 10.000 on Xcoin I will be at the top 100 hodlers, which is the highest I can position myself ATM)
 - [ ] Create Wallet feature
 - [ ] Create add to Wallet functions
 - [ ] Create Remove from wallet functions
@@ -75,7 +78,7 @@ If everything goes as planned it should look something like this:
 
 I couldn't have made this template engine without this article from hackernoon.com (2)
 
-Let me explain what happens here:
+Let me explain what happens under the hood:
 
 1. I send the HTML element `(string)` and the data `(object)` to `render()`.
 2. The function looks for `{{ }}` tags and uses the word inside as a reference for the value that needs to be inserted.
@@ -84,10 +87,21 @@ Let me explain what happens here:
    Templating Engine Code Examples
 
 ```js
-
+ render: (template, data) => {
+    // Search for anything that is surrounded by the brackets, and replace it with the name inside data.
+    // I.E. "{{data.FullName}}", "data = {FullName:"Bitcoin"}"
+    return template.replace(/{{(.*?)}}/g, (match) => {
+      return data[match.split(/{{|}}/).filter(Boolean)[0].trim()];
+    });
+  },
 ```
+
+# Router
+
+I needed to handle the routes so I've used the microlibrary `routie.js` (3).
 
 # References And Sources
 
 1. https://hackernoon.com/how-to-create-new-template-engine-using-javascript-8f26313p
 2. https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript
+3. https://github.com/jgallen23/routie
