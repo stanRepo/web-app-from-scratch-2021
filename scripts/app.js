@@ -1,6 +1,6 @@
-import endPoints from "./endPoints.js";
-import Store from "./store.js";
-import Router from "./router.js";
+import endPoints from "./modules/endPoints.js";
+import Store from "./modules/store.js";
+import Router from "./modules/router.js";
 
 class App {
   constructor() {
