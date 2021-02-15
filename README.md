@@ -31,12 +31,17 @@ clone the repository and host index.html on your web server.
 - [ ] Create Remove from wallet functions
 - [ ] Template wallet
 
-# APIs Used
+# API Used
 
-[description]: ./assets/CryptoCompareDescription.JPG
-
-![description cryptocompare API][description]
+![description cryptocompare API](./project/assets/CryptoCompareDescription.jpg)
 Cryptocompare: https://min-api.cryptocompare.com/
+
+For this course I used the Cryptocompare API. I used `fetch()` to do multiple requests.
+
+The API sends back a string which contains an object.
+If everything goes as planned it should look something like this:
+
+![API Succesfully Retrieved](./project/assets/ApiSucces.jpg)
 
 # Actor & Interaction Diagram
 
@@ -55,7 +60,8 @@ Cryptocompare: https://min-api.cryptocompare.com/
 # Checklist
 
 - [ ] Update wiki
-- [ ] User Interaction Diagram
+- [x] Interaction Diagram
+- [x] Actor Diagram
 - [x] Retrieve basic data from all coins (Basic Data List)
 - [x] Refine Basic Data List, Store Locally.
 - [x] Retrieve toplist by marketcap
@@ -67,7 +73,15 @@ Cryptocompare: https://min-api.cryptocompare.com/
 
 # Templating Engine
 
-Templating Engine Code Examples
+I couldn't have made this template engine without this article from hackernoon.com (2)
+
+Let me explain what happens here:
+
+1. I send the HTML element `(string)` and the data `(object)` to `render()`.
+2. The function looks for `{{ }}` tags and uses the word inside as a reference for the value that needs to be inserted.
+3. A `.replace` function used to replace the word.
+4. So if I know `data` and I need `data.name` to be rendered. I can just add {{name}} to my html.
+   Templating Engine Code Examples
 
 ```js
 

@@ -1,22 +1,4 @@
 const render = {
-  displayThese: [
-    "FullName",
-    "Name",
-    "MarketCap",
-    "Price.DISPLAY",
-    "Change24Hrs",
-    "ChangePCT24Hrs",
-    "Supply",
-  ],
-
-  Template: (Stat) => {
-    let string = (displayThisStat) => {
-      const x = `{{ ${displayThisStat} }}`;
-      return x;
-    };
-    // console.log(string(Stat));
-    return string(Stat);
-  },
   render: (template, data) => {
     // Search for anything that is surrounded by the brackets, and replace it with the name inside data.
     // I.E. "{{data.FullName}}", "data = {FullName:"Bitcoin"}"
@@ -69,10 +51,6 @@ const render = {
   },
   compile: (template) => {
     return new Function("data", "return " + compileToString(template));
-  },
-  emptyTable: () => {
-    const el = document.querySelector("tbody");
-    el.innerHTML = "";
   },
 };
 
