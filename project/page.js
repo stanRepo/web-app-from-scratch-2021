@@ -14,8 +14,32 @@ export default class Page {
     this.key = key;
     this.update = update;
     this.lists = [];
+    this.variableEl = [
+      document.querySelector("tbody"),
+      document.querySelector(".extraInfoSection"),
+    ];
+    this.inputSearchQuery = () => {
+      const el = document.querySelector(".inputTicker");
+      const submitBtn = document.querySelector(".searchBtn");
+      //   debugger;
+      console.log(el);
+      el.addEventListener("keyup", (e) => {
+        console.log(el.value);
+      });
+      submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.hash = `details/${el.value.toUpperCase()}`;
+      });
+    };
   }
-
+  setLoader = () => {
+    const el = document.querySelector(".loader");
+    el.classList.remove("display-none");
+  };
+  hideLoader = () => {
+    const el = document.querySelector(".loader");
+    el.classList.add("display-none");
+  };
   render() {
     console.log(this);
     return {
@@ -26,7 +50,7 @@ export default class Page {
   }
   positionCalc = (() => {
     const positionCalc = document.querySelector("#positionCalc");
-    positionCalc.addEventListener("keyup", (e) => {
+    positionCalc.addEventListener("input", (e) => {
       let coins = document.querySelectorAll(".coin");
       coins = Array.from(coins);
       coins.forEach((coin) => {

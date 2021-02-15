@@ -16,8 +16,12 @@ const endPoints = {
     },
   ],
   getSingle: (subject, valuedIn) => {
-    let string = `https://min-api.cryptocompare.com/data/pricemultifull? ${endPoints.options.subject}${subject}&${endPoints.options.valuedIn}${valuedIn}`;
-    return string;
+    let string = `https://min-api.cryptocompare.com/data/pricemultifull?${endPoints.options.subject}${subject}&${endPoints.options.valuedIn}${valuedIn}`;
+    const obj = {
+      url: string,
+      query: "getSingle",
+    };
+    return obj;
   },
   options: {
     subject: "fsyms=", // currencies seperated by commas followed by an ampersant (&),

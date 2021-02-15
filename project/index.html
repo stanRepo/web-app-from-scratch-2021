@@ -9,17 +9,17 @@
   <body>
     <main>
       <section class="title">
-        <h1>Cryptoview</h1>
+        <a href="#"><h1>Cryptoview</h1></a>
       </section>
       <!-- Input section for searching Tickers and their data -->
 
-      <a href="#details/BTC">#details</a>
-      <a href="#">home</a>
-      <a href="#adadadas">router wildcard test</a>
+      <!-- <a href="#details/BTC">#details</a> -->
+
+      <!-- <a href="#adadadas">router wildcard test</a> -->
       <!-- <button id="clearCache">Empty Cache</button> -->
       <section>
         <input
-          class=".inputTicker"
+          class="inputTicker"
           name="inputTicker"
           type="text"
           aria-label="input crypto ticker"
@@ -27,18 +27,13 @@
         />
         <label for="inputTicker"></label>
         <button class="searchBtn" type="submit">Submit</button>
-
-        <select name="tableSelector" id="">
-          <option value="initList">All Coins</option>
-          <option value="topListByMarketCap">Market Capitalzation</option>
-          <option value="topListByVolume23Hrs">volume (24hrs)</option>
-        </select>
       </section>
 
       <!-- Add wallet as soon as localStorage is done -->
       <section class="wallet"></section>
 
       <section class="overview">
+        <div class="loader display-none"></div>
         <table class="overviewTable">
           <caption>
             Today's cryptocurrency biggest movers
@@ -74,9 +69,8 @@
                 <details>
                   <h4>% Change Last 24 Hours:<b>{{ ChangePCT24Hrs }}</b></h4>
                   <br />
-                  Algorithm : {{ Algorithm }} <br />
-                  ProofType: {{ ProofType }} <br />
-                  Asset Launch Date: {{ AssetLaunchDate }} <br />
+
+                  <!-- Description: {{Description}} -->
                 </details>
                 <!-- <img
                     src="imageNotFound.png"
@@ -96,6 +90,25 @@
             </tr>
           </tbody>
         </table>
+      </section>
+
+      <section>
+        <ul class="extraInfoSection">
+          <ul id="extraInfo" class="display-none">
+            <img src="{{ imageUrl }}" />
+            <li><h1>{{ Name }}</h1></li>
+            <li>
+              <h3>Extra Information</h3>
+              Algorithm : {{ Algorithm }} <br />
+              ProofType: {{ ProofType }} <br />
+              Asset Launch Date: {{ AssetLaunchDate }} <br />
+            </li>
+            <li>
+              <h3>Description</h3>
+              {{ Description }}
+            </li>
+          </ul>
+        </ul>
       </section>
     </main>
 

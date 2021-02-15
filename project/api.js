@@ -12,16 +12,18 @@ export default class API {
     return new Promise((resolve, reject) => {
       const data = fetch(`${endPoint.url}`)
         .then((res) => {
+          //   console.log(res);
           return res.json();
         })
         .then((data) => {
+          console.log(data);
           this.data = {
-            data: data.Data,
+            data: data.Data || data,
             query: endPoint.query,
           };
-
           try {
-            this.store.stateCreate(endPoint.query, this.data);
+            // console.log(data);
+            this.store.stateCreate(endPoint.query, data);
           } catch {
             console.log("listerror, refining"); // 1 list is too big to store locally right now. So I use .map() to Filter it
 
