@@ -33,16 +33,20 @@ clone the repository and host index.html on your web server.
 
 # APIs Used
 
-[description]: \assets\CryptoCompareDescription.JPG
+[description]: ./assets/CryptoCompareDescription.JPG
 
 ![description cryptocompare API][description]
 Cryptocompare: https://min-api.cryptocompare.com/
 
 # Actor & Interaction Diagram
 
-Actor Diagram
+## Actor Diagram
 
-Interaction Diagram
+![Actor Diagram](./project/assets/actorDiagram.jpg)
+
+## Interaction Diagram
+
+![Interaction Diagram](./project/assets/interactionDiagram.jpg)
 
 # Design patterns used
 

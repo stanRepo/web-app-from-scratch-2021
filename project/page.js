@@ -32,6 +32,14 @@ export default class Page {
       });
     };
   }
+  setLoader = () => {
+    const el = document.querySelector(".loader");
+    el.classList.remove("display-none");
+  };
+  hideLoader = () => {
+    const el = document.querySelector(".loader");
+    el.classList.add("display-none");
+  };
   render() {
     console.log(this);
     return {
@@ -42,7 +50,7 @@ export default class Page {
   }
   positionCalc = (() => {
     const positionCalc = document.querySelector("#positionCalc");
-    positionCalc.addEventListener("keyup", (e) => {
+    positionCalc.addEventListener("input", (e) => {
       let coins = document.querySelectorAll(".coin");
       coins = Array.from(coins);
       coins.forEach((coin) => {

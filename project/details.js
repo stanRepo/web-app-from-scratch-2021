@@ -52,6 +52,8 @@ export default class Details extends Page {
     };
     this.inputSearchQuery();
     this.clearVariableElements();
+    this.setLoader();
     data();
+    this.hideLoader();
   }
 }

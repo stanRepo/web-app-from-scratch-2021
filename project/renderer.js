@@ -25,6 +25,7 @@ export default class Renderer {
       const newEl = document.createElement("li");
       newEl.setAttribute("id", `dataDetails${i}`);
       newEl.innerHTML = renderedElement;
+      newEl.classList.add(`details`);
       parentElement.insertAdjacentElement("beforeend", newEl);
     });
   };
