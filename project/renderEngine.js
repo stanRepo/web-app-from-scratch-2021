@@ -1,6 +1,3 @@
-import localStorage from "./cache.js";
-import templator from "./template.js";
-
 const render = {
   displayThese: [
     "FullName",
