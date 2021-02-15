@@ -33,7 +33,7 @@ clone the repository and host index.html on your web server.
 
 # API Used
 
-![description cryptocompare API](./project/assets/CryptoCompareDescription.jpg)
+![description cryptocompare API](https://github.com/stanRepo/web-app-from-scratch-2021/blob/master/project/assets/CryptoCompareDescription.jpg)
 Cryptocompare: https://min-api.cryptocompare.com/
 
 For this course I used the Cryptocompare API. I used `fetch()` to do multiple requests.
@@ -41,17 +41,17 @@ For this course I used the Cryptocompare API. I used `fetch()` to do multiple re
 The API sends back a string which contains an object.
 If everything goes as planned it should look something like this:
 
-![API Succesfully Retrieved](./project/assets/ApiSucces.jpg)
+![API Succesfully Retrieved](https://github.com/stanRepo/web-app-from-scratch-2021/blob/master/project/assets/ApiSucces.jpg)
 
 # Actor & Interaction Diagram
 
 ## Actor Diagram
 
-![Actor Diagram](./project/assets/actorDiagram.jpg)
+![Actor Diagram](https://github.com/stanRepo/web-app-from-scratch-2021/blob/master/project/assets/actorDiagram.jpg)
 
 ## Interaction Diagram
 
-![Interaction Diagram](./project/assets/interactionDiagram.jpg)
+![Interaction Diagram](https://github.com/stanRepo/web-app-from-scratch-2021/blob/master/project/assets/interactionDiagram.jpg)
 
 # Design patterns used
 
