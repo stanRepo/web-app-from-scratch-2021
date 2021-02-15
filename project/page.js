@@ -14,6 +14,10 @@ export default class Page {
     this.key = key;
     this.update = update;
     this.lists = [];
+    this.variableEl = [
+      document.querySelector("tbody"),
+      document.querySelector(".extraInfoSection"),
+    ];
   }
 
   render() {

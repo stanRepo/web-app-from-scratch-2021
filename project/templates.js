@@ -88,7 +88,7 @@ export default class Templates {
         imageUrl: `https://www.cryptocompare.com/${coin.ImageUrl}`,
         // overview url
         maxSupply: this.maxSupplyValidate(coin.MaxSupply),
-        linkToCC: "https://www.cryptocompare.com/${coin.CoinInfo.Url}",
+        //linkToCC: `https://www.cryptocompare.com/${coin.CoinInfo.Url}`,
         ProofType: coin.ProofType,
         Algorithm: coin.Algorithm,
         AssetLaunchDate: coin.AssetLaunchDate,
@@ -97,7 +97,13 @@ export default class Templates {
       });
     });
     //console.log(arr[0]);
-    console.log(arr.length);
+    console.log(arr);
+    // debugger;
+    arr = arr.sort((a, b) => b.MarketCapRAW - a.MarketCapRAW); // for descending sort
+    arr = arr.map((coin, i) => {
+      coin.listNumber = i + 1;
+      return coin;
+    });
     return arr;
   };
   maxSupplyValidate = (maxSupply) => {

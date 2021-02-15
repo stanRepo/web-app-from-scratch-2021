@@ -77,6 +77,7 @@
                   Algorithm : {{ Algorithm }} <br />
                   ProofType: {{ ProofType }} <br />
                   Asset Launch Date: {{ AssetLaunchDate }} <br />
+                  <!-- Description: {{Description}} -->
                 </details>
                 <!-- <img
                     src="imageNotFound.png"
@@ -96,6 +97,14 @@
             </tr>
           </tbody>
         </table>
+      </section>
+
+      <section class="extraInfoSection">
+        <ul id="extraInfo" class="display-none">
+          <img src="{{ imageUrl }}" />
+          <li>Name: {{ Name }}</li>
+          <li>Description: {{ Description }}</li>
+        </ul>
       </section>
     </main>
 

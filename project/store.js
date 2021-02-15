@@ -16,7 +16,7 @@ export default class Store {
     };
     this.stateGet = (key) => {
       const data = window.localStorage.getItem(key);
-      return data;
+      return JSON.parse(data);
     };
 
     this.currentLocation = window.location;

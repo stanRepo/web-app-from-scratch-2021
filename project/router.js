@@ -7,7 +7,7 @@ export default class Router {
     routie({
       "": this["/"],
       "/": this["/"],
-      "/details/:id": this["/details/:id"],
+      "details/:id": this["details/:id"],
       "*": this["*"],
     });
   }
@@ -25,7 +25,7 @@ export default class Router {
   };
   "details/:id" = (id) => {
     console.log("@details");
-    const detailsPage = new Details(this.render, id);
+    const detailsPage = new Details(this.render, endPoints, id);
     this.currentPage = detailsPage;
   };
   "*" = () => {
