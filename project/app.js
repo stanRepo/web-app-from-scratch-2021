@@ -93,6 +93,7 @@ class Page {
     this.store = new Store();
     this.template = new Templates(endPoints);
     this.Api = new API(this.endPoint, this.store);
+    this.renderer = new Renderer();
     this.endPoints = endPoints;
     this.key = key;
     this.update = update;
@@ -129,10 +130,22 @@ class Index extends Page {
             return x;
           })
         ).then((res) => {
-          console.log(res);
+          // console.log(res);
           console.log("calling templater");
-          this.template.combineLists(res);
-          console.log(this.store.stateRead.length);
+          const combinedList = this.template.combineLists(res);
+          // call renderer
+          // console.log(combinedList);
+
+          let finalList = this.template.createDataSetMarketCapOverview(
+            combinedList
+          );
+          finalList = finalList.sort((a, b) => b.MarketCapRAW - a.MarketCapRAW); // for descending sort
+          finalList = finalList.map((coin, i) => {
+            coin.listNumber = i + 1;
+            return coin;
+          });
+          console.log(finalList);
+          this.renderer.render(finalList);
         });
       } catch (err) {
         console.log(err);
@@ -140,13 +153,8 @@ class Index extends Page {
     };
 
     this.getItem().then((res) => {
-      console.log(this.store.stateRead.length);
+      // console.log(this.store.stateRead.length);
     });
-  }
-
-  combineLists(lists) {
-    console.log("Combining Lists");
-    console.log(window.localStorage.length);
   }
 }
 
@@ -196,7 +204,7 @@ class API {
               //resolve(lists);
             }
           }
-          console.log(this.data);
+          //console.log(this.data);
 
           resolve(this.data);
         })
@@ -206,6 +214,23 @@ class API {
     });
   };
   fetchEndPoints = async (endPoints) => {};
+}
+
+class Renderer {
+  constructor() {}
+  render = (finalList) => {
+    finalList.forEach((coin, i) => {
+      let element = document.querySelector(".data"); // select HTML Element to render
+      let parentElement = document.querySelector("tbody"); // select parent
+      let dataHMTLString = element.innerHTML.toString(); // Create Template
+      const renderedElement = render.render(dataHMTLString, coin); // create next coin layout
+      const newRowElement = document.createElement("tr"); // create new Row Element
+      newRowElement.setAttribute("id", `data${i}`); // set a custom ID (unused atm)
+      newRowElement.innerHTML = renderedElement; // set innerHTML to ne
+      parentElement.insertAdjacentElement("beforeend", newRowElement); // add new element to parentElement
+      newRowElement.classList.add(coin.Name, "coin");
+    });
+  };
 }
 
 class Templates {
@@ -230,6 +255,9 @@ class Templates {
 
     return array;
   };
+  // I want to create a list that hold as much information as possible about the coins that are selected.
+  // I loop through the list to find the initList which holds information about all coins.
+  // if current list is not initList or the list that holds the totals
   combineLists = (lists) => {
     this.listOfCombinedData = [];
 
@@ -241,27 +269,80 @@ class Templates {
             if (list.query !== "initList") {
               // console.log(list);
               list.data.forEach((coin2) => {
-                // console.log(coin1);
-                // console.log(coin2);
-                if (coin1.FullName == coin2.CoinInfo.FullName) {
+                if (coin1.ticker === coin2.CoinInfo.Name) {
+                  // console.log(`${coin1.FullName} + ${coin2.CoinInfo.FullName}`);
+                  // console.log("found a pair");
                   // found a pair
-                  const newCoin = { ...coin2.CoinInfo, ...coin1.CoinInfo };
-                  this.listOfCombinedData.push(newCoin);
-                  console.log(this.listOfCombinedData);
-                  debugger;
+                  let newCoin = { ...coin1, ...coin2.CoinInfo }; // set Coininfo
+                  //console.log(coin2);
+                  // debugger;
+
+                  if (coin2.DISPLAY) {
+                    let firstKey = Object.keys(coin2.DISPLAY);
+                    //console.log(firstKey[0] === "EUR");
+
+                    if (firstKey[0] === "EUR") {
+                      newCoin.RAW = coin2.RAW; // RAW info
+                      newCoin.DISPLAY = coin2.DISPLAY; // DISPLAY info
+                      this.listOfCombinedData.push(newCoin);
+                    }
+                  }
+                  // console.log(this.listOfCombinedData);
+                  // debugger;
                 }
               });
             }
           });
         });
-        console.log("lists combined");
-        console.log(this.listOfCombinedData);
+        console.log(this);
+        return this.listOfCombinedData;
       }
+      return this.listOfCombinedData;
     });
+    return this.listOfCombinedData;
   };
-  // I want to create a list that hold as much information as possible about the coins that are selected.
-  // I loop through the list to find the initList which holds information about all coins.
-  // if current list is not initList or the list that holds the totals
+
+  createDataSetMarketCapOverview = (data) => {
+    // console.log(query);
+
+    let arr = [];
+    // /console.log(data);
+
+    data.forEach((coin, i) => {
+      //console.log(coin);
+      arr.push({
+        FullName: coin.FullName,
+        Name: coin.Name,
+        MarketCap: coin.DISPLAY.EUR.MKTCAP,
+        MarketCapRAW: coin.RAW.EUR.MKTCAP,
+        Price: coin.DISPLAY.EUR.PRICE,
+        Change24Hrs: coin.RAW.EUR.CHANGE24HOUR,
+        ChangePCT24Hrs: coin.RAW.EUR.CHANGEPCT24HOUR.toFixed(2),
+        Supply: coin.DISPLAY.EUR.SUPPLY,
+        listNumber: i + 1,
+        imageUrl: `https://www.cryptocompare.com/${coin.ImageUrl}`,
+        // overview url
+        maxSupply: this.maxSupplyValidate(coin.MaxSupply),
+        linkToCC: "https://www.cryptocompare.com/${coin.CoinInfo.Url}",
+        ProofType: coin.ProofType,
+        Algorithm: coin.Algorithm,
+        AssetLaunchDate: coin.AssetLaunchDate,
+        Description: coin.Description,
+        //
+      });
+    });
+    //console.log(arr[0]);
+    console.log(arr.length);
+    return arr;
+  };
+  maxSupplyValidate = (maxSupply) => {
+    if (maxSupply == "-1") {
+      maxSupply = "No max supply";
+      return maxSupply;
+    } else {
+      return maxSupply;
+    }
+  };
 }
 
 // console.log(this);
