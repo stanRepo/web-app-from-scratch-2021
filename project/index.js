@@ -41,6 +41,7 @@ export default class Index extends Page {
         console.log(err);
       }
     };
+    this.inputSearchQuery();
     this.clearVariableElements();
     this.getItem().then((res) => {});
   }

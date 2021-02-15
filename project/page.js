@@ -18,8 +18,20 @@ export default class Page {
       document.querySelector("tbody"),
       document.querySelector(".extraInfoSection"),
     ];
+    this.inputSearchQuery = () => {
+      const el = document.querySelector(".inputTicker");
+      const submitBtn = document.querySelector(".searchBtn");
+      //   debugger;
+      console.log(el);
+      el.addEventListener("keyup", (e) => {
+        console.log(el.value);
+      });
+      submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.hash = `details/${el.value.toUpperCase()}`;
+      });
+    };
   }
-
   render() {
     console.log(this);
     return {

@@ -97,7 +97,7 @@ export default class Templates {
       });
     });
     //console.log(arr[0]);
-    console.log(arr);
+    //console.log(arr);
     // debugger;
     arr = arr.sort((a, b) => b.MarketCapRAW - a.MarketCapRAW); // for descending sort
     arr = arr.map((coin, i) => {

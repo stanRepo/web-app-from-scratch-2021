@@ -50,6 +50,7 @@ export default class Details extends Page {
       // });
       // console.log(res);
     };
+    this.inputSearchQuery();
     this.clearVariableElements();
     data();
   }
