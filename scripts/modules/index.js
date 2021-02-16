@@ -67,7 +67,7 @@ export default class Index extends Page {
         this.calculateSentimentsCorrelation();
       }
     };
-    this.inputSearchQuery();
+    // this.inputSearchQuery();
     this.clearVariableElements();
     this.setLoader();
     this.getItem().then((res) => {

@@ -8,16 +8,16 @@
   </head>
   <body>
     <main>
-      <section class="title">
+      <header class="title">
         <a href="#"><h1>X Value</h1></a>
-      </section>
+      </header>
       <!-- Input section for searching Tickers and their data -->
 
       <!-- <a href="#details/BTC">#details</a> -->
 
       <!-- <a href="#adadadas">router wildcard test</a> -->
       <!-- <button id="clearCache">Empty Cache</button> -->
-      <section>
+      <!-- <section>
         <input
           class="inputTicker"
           name="inputTicker"
@@ -27,7 +27,7 @@
         />
         <label for="inputTicker"></label>
         <button class="searchBtn" type="submit">Submit</button>
-      </section>
+      </section> -->
 
       <!-- Add wallet as soon as localStorage is done -->
       <section class="wallet"></section>
@@ -35,7 +35,7 @@
       <section class="overview">
         <div class="loader display-none"></div>
         <table class="overviewTable">
-          <title>Today's cryptocurrency biggest movers</title>
+          <h3>A Crypto SPA</h3>
           <p>The Market is: <span id="marketSentiment"></span></p>
           <b>X-value = % of all %ΔPrice in EUR in the last 24H.</b>
           <thead>
@@ -48,7 +48,8 @@
               <th class="hideOnSmallScreen">Cirulating Supply</th>
               <th class="hideOnMediumScreen">Max Supply</th>
               <th class="">
-                X Value
+                X Value <br />
+                avg: <span id="headerX" class="percentageDeltaPrice"></span>
 
                 <form action="" id="calculatePositionForm">
                   <!-- <input type="text" placeholder="BTC" id="inputTicker" />
@@ -96,7 +97,7 @@
               </td>
               <td class="hideOnSmallScreen">&nbsp; {{ Supply }}</td>
               <td class="hideOnMediumScreen">&nbsp;{{ maxSupply }}</td>
-              <td class="coin{{ Name }}">&nbsp;</td>
+              <td class="coin{{ Name }} percentageDeltaPrice">&nbsp;</td>
               <td class="display-none MarketCapRAW">{{ MarketCapRAW }}</td>
             </tr>
           </tbody>

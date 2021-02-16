@@ -3,6 +3,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
+  background-color: honeydew;
+}
+header {
+  text-align: center;
+}
+h1 {
+  font-size: 10vh;
+  margin: 0;
 }
 table {
   margin: 0vw 5vw;
@@ -49,9 +57,12 @@ td {
 .overviewTable td {
   /* border: 0px solid #f7323200; */
   padding: 7px;
-  background: #dcfffa;
+
   font-size: large;
   font-weight: 900;
+}
+.overviewTable {
+  background-color: honeydew;
 }
 /* Table Column # */
 tr td:nth-child(1) {
@@ -73,12 +84,12 @@ tr td:nth-child(3) {
   /* width: 20vw; */
 }
 .greenNumber {
-  color: rgb(0, 255, 0);
-  background-color: rgb(60, 79, 97);
+  color: rgb(0, 197, 0);
+  background-color: rgb(194, 255, 194);
 }
 .redNumber {
   color: red;
-  background-color: white;
+  background-color: rgb(255, 191, 191);
 }
 span {
   font-size: small;

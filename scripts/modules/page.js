@@ -112,6 +112,15 @@ export default class Page {
     //     break;
     // }
   };
+  setXValueAvarage = (shareOfTotalList) => {
+    const headerEl = document.querySelector("#headerX");
+    let total = 0;
+    shareOfTotalList.forEach((coin) => {
+      total += coin.share;
+    });
+    total = total / shareOfTotalList.length;
+    headerEl.innerHTML = total.toFixed(3).toString();
+  };
   calculateSentimentsCorrelation = () => {
     // const investment = form.querySelector("#investment");
     // console.log(investment.value.split("").length);
@@ -141,7 +150,8 @@ export default class Page {
       });
       // het totale aandeel % verandering van 1 coin  in de %verandering van alle coins /100 * investment.
     });
-    let n = 0;
+    this.setXValueAvarage(shareOfTotalList);
+
     shareOfTotalList.forEach((coin) => {
       // console.log(coin);
       const el = document.querySelector(`.coin${coin.Name}`);
