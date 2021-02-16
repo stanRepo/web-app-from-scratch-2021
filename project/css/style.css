@@ -5,8 +5,12 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: honeydew;
 }
+.setMood {
+  border: 1vw solid red;
+}
 header {
   text-align: center;
+  background-color: ivory;
 }
 h1 {
   font-size: 10vh;
