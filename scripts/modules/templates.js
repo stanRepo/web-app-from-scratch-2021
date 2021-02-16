@@ -74,7 +74,8 @@ export default class Templates {
     // /console.log(data);
 
     data.forEach((coin, i) => {
-      //console.log(coin);
+      // console.log(coin);
+      // debugger;
       arr.push({
         FullName: coin.FullName,
         Name: coin.Name,

@@ -5,10 +5,10 @@ body {
   font-family: "Roboto", sans-serif;
 }
 table {
-  background-color: rgb(76, 0, 255);
   margin: 0vw 5vw;
 }
 thead {
+  background-color: rgb(76, 0, 255);
   color: white;
 }
 .overviewTable {
@@ -19,10 +19,16 @@ thead {
 .overviewTable th {
   /* border: 1px solid #000000; */
   padding: 5px;
-
-  font-size: x-large;
+  background-color: rgb(76, 0, 255);
+  font-size: large;
+  position: sticky;
+  top: 0;
+  transition: 0.1s;
+  z-index: 10;
 }
-
+a {
+  text-decoration: none;
+}
 .display-none {
   display: none;
 }
@@ -34,7 +40,10 @@ thead {
 }
 td {
   text-align: center;
-  padding: 5px;
+}
+.coin:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
 }
 
 .overviewTable td {
@@ -50,19 +59,40 @@ tr td:nth-child(1) {
 }
 /* Table Column Coin Fullname */
 tr td:nth-child(2) {
-  font-family: monospace;
+  /* font-family: monospace; */
   text-align: left;
+  /* display: flex; */
+  /* flex-direction: row; */
+  align-items: center;
+  font-size: small;
 }
 /* Table Column Ticker */
 tr td:nth-child(3) {
   font-family: monospace;
   font-size: 30px / 10vw;
+  /* width: 20vw; */
+}
+.greenNumber {
+  color: rgb(0, 255, 0);
+  background-color: rgb(60, 79, 97);
+}
+.redNumber {
+  color: red;
+  background-color: white;
+}
+span {
+  font-size: small;
 }
 /* Table Column Price */
-td img {
-  max-width: 20px;
-  max-height: 20px;
+tr td + th:nth-child(4) {
+  min-width: 25vw;
+}
+td img,
+object {
+  max-width: 5vw;
+  max-height: 5vw;
   border-radius: 50%;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
 /* Table Column MarketCap */
 /* Table Column Circulating Supply */
@@ -71,6 +101,10 @@ details {
   padding: 5px 10px;
   font-size: medium;
   max-width: 220px;
+}
+/* Description */
+#dataDetails0 > li:nth-child(4) > p {
+  max-width: 30ch;
 }
 
 @media screen and (max-width: 680px) {
@@ -101,7 +135,7 @@ ul {
   opacity: 20%;
   width: 40vh;
   height: 40vh;
-  right: 10px;
+  right: 25px;
   border-radius: 50%;
 }
 .loader {

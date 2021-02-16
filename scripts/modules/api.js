@@ -9,10 +9,11 @@ export default class API {
   }
 
   fetch = (endPoint, key) => {
+    /// correct according to the fetch() api documentation?
     return new Promise((resolve, reject) => {
+      // const data = fetch(`${endPoint.url}`, { mode: "no-cors" })
       const data = fetch(`${endPoint.url}`)
         .then((res) => {
-          //   console.log(res);
           return res.json();
         })
         .then((data) => {
@@ -23,7 +24,7 @@ export default class API {
           };
           try {
             // console.log(data);
-            this.store.stateCreate(endPoint.query, data);
+            this.store.stateCreate(endPoint.query, data.Data);
           } catch {
             console.log("listerror, refining"); // 1 list is too big to store locally right now. So I use .map() to Filter it
 
