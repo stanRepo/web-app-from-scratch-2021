@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>X- Value</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <main>
       <section class="title">
-        <a href="#"><h1>Cryptoview</h1></a>
+        <a href="#"><h1>X Value</h1></a>
       </section>
       <!-- Input section for searching Tickers and their data -->
 
@@ -35,26 +35,30 @@
       <section class="overview">
         <div class="loader display-none"></div>
         <table class="overviewTable">
-          <caption>
-            Today's cryptocurrency biggest movers
-          </caption>
-
+          <title>Today's cryptocurrency biggest movers</title>
+          <p>The Market is: <span id="marketSentiment"></span></p>
+          <b>X-value = % of all %ΔPrice in EUR in the last 24H.</b>
           <thead>
             <tr>
               <th>#</th>
               <th></th>
-              <th class="hideOnSmallScreen">Name</th>
+              <th class="hideOnMediumScreen"></th>
               <th>Price</th>
               <th class="hideOnSmallerScreen">Market Capitalization</th>
               <th class="hideOnSmallScreen">Cirulating Supply</th>
               <th class="hideOnMediumScreen">Max Supply</th>
-              <th class="hideOnMediumScreen">
-                Calculate buy-In Position
-                <input
-                  id="positionCalc"
-                  type="number"
-                  placeholder="# position"
-                />
+              <th class="">
+                X Value
+
+                <form action="" id="calculatePositionForm">
+                  <!-- <input type="text" placeholder="BTC" id="inputTicker" />
+                  <input
+                    id="investment"
+                    type="number"
+                    placeholder="# position"
+                  />
+                  <button type="submit">Calculate</button> -->
+                </form>
               </th>
             </tr>
           </thead>
@@ -80,17 +84,19 @@
                     onerror="this.onerror=null;this.src='{{ FullName }}';"
                     /> -->
               </td>
-              <td class="hideOnSmallScreen">
-                &nbsp;{{ Name }}
-                <a href="index.html#details/{{ Name }}">{{ FullName }} </a>
+              <td class="hideOnMediumScreen">&nbsp;{{ Name }}</td>
+              <td>
+                &nbsp;{{ Price }}
+                <span class="percentageDeltaPrice"
+                  >{{ ChangePCT24Hrs }}<b>%</b></span
+                >
               </td>
-              <td>&nbsp;{{ Price }}</td>
               <td class="hideOnSmallerScreen MarketCap">
                 &nbsp;{{ MarketCap }}
               </td>
               <td class="hideOnSmallScreen">&nbsp; {{ Supply }}</td>
               <td class="hideOnMediumScreen">&nbsp;{{ maxSupply }}</td>
-              <td class="hideOnMediumScreen">&nbsp; position</td>
+              <td class="coin{{ Name }}">&nbsp;</td>
               <td class="display-none MarketCapRAW">{{ MarketCapRAW }}</td>
             </tr>
           </tbody>

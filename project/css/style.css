@@ -5,10 +5,10 @@ body {
   font-family: "Roboto", sans-serif;
 }
 table {
-  background-color: rgb(76, 0, 255);
   margin: 0vw 5vw;
 }
 thead {
+  background-color: rgb(76, 0, 255);
   color: white;
 }
 .overviewTable {
@@ -19,8 +19,12 @@ thead {
 .overviewTable th {
   /* border: 1px solid #000000; */
   padding: 5px;
-
+  background-color: rgb(76, 0, 255);
   font-size: large;
+  position: sticky;
+  top: 0;
+  transition: 0.1s;
+  z-index: 10;
 }
 a {
   text-decoration: none;
@@ -36,6 +40,10 @@ a {
 }
 td {
   text-align: center;
+}
+.coin:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
 }
 
 .overviewTable td {
@@ -54,14 +62,31 @@ tr td:nth-child(2) {
   /* font-family: monospace; */
   text-align: left;
   /* display: flex; */
+  /* flex-direction: row; */
   align-items: center;
+  font-size: small;
 }
 /* Table Column Ticker */
 tr td:nth-child(3) {
   font-family: monospace;
   font-size: 30px / 10vw;
+  /* width: 20vw; */
+}
+.greenNumber {
+  color: rgb(0, 255, 0);
+  background-color: rgb(60, 79, 97);
+}
+.redNumber {
+  color: red;
+  background-color: white;
+}
+span {
+  font-size: small;
 }
 /* Table Column Price */
+tr td + th:nth-child(4) {
+  min-width: 25vw;
+}
 td img,
 object {
   max-width: 5vw;

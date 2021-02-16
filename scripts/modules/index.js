@@ -11,34 +11,60 @@ export default class Index extends Page {
       console.log(this);
       this.variableEl.forEach((el) => {
         this.renderer.clearEl(el);
-        console.log("cleared");
+        // /console.log("cleared");
       });
     };
     // get all lists
     // this function will fetch data => refine for storage => save to localstorage => call templator
     this.getItem = async () => {
+      // state >= XDATE?1000seconden: getNewData:getLocally
       // wait for all lists to be retrieved
-      try {
-        let res = await Promise.all(
-          endPoints.initialLists.map((e, i) => {
-            const x = this.Api.fetch(e);
-            return x;
-          })
-        ).then((res) => {
-          console.log("calling Combiner");
-          const combinedList = this.template.combineLists(res);
-          this.store.stateCreate("combinedList", combinedList);
-          // call renderer
+      const today = new Date();
+      const timeStamp = today.getTime();
+      const savedTime = this.store.stateGet("freshTimeStamp"); // milliseconds
+      console.log(savedTime);
 
-          let finalList = this.template.createDataSetMarketCapOverview(
-            combinedList
-          );
+      if (!savedTime || timeStamp - savedTime > 30000) {
+        console.log("Retrieving new Data");
+        try {
+          let res = await Promise.all(
+            endPoints.initialLists.map((e, i) => {
+              const x = this.Api.fetch(e);
+              return x;
+            })
+          )
+            .then((res) => {
+              console.log(res);
+              this.store.stateCreate(`freshTimeStamp`, timeStamp);
+              console.log("calling Combiner");
+              const combinedList = this.template.combineLists(res);
+              this.store.stateCreate("combinedList", combinedList);
+              // call renderer
 
-          console.log(finalList);
-          this.renderer.renderTable(finalList);
-        });
-      } catch (err) {
-        console.log(err);
+              let finalList = this.template.createDataSetMarketCapOverview(
+                combinedList
+              );
+
+              // console.log(finalList);
+              this.renderer.renderTable(finalList);
+            })
+            .then(() => {
+              this.calculateSentimentsCorrelation();
+            });
+        } catch (err) {
+          console.log(err);
+        }
+      } else {
+        console.log("Old Data Retrieved");
+        const combinedList = this.store.stateGet("combinedList");
+        // call renderer
+        let finalList = this.template.createDataSetMarketCapOverview(
+          combinedList
+        );
+
+        // console.log(finalList);
+        this.renderer.renderTable(finalList);
+        this.calculateSentimentsCorrelation();
       }
     };
     this.inputSearchQuery();
@@ -46,6 +72,7 @@ export default class Index extends Page {
     this.setLoader();
     this.getItem().then((res) => {
       this.hideLoader();
+      this.colorPricePercentage();
     });
   }
 }
