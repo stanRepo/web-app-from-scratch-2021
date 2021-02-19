@@ -60,7 +60,7 @@ If everything goes as planned it should look something like this:
 # Design patterns used
 
 - Javascript Modular Design Pattern (1)
-- Javascript Singleton Pattern
+- Javascript Singleton Pattern (4)
 
 # Checklist
 
@@ -108,6 +108,7 @@ I needed to handle the routes so I've used the microlibrary `routie.js` (3).
 1. https://hackernoon.com/how-to-create-new-template-engine-using-javascript-8f26313p
 2. https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript
 3. https://github.com/jgallen23/routie
+4. https://www.dofactory.com/javascript/design-patterns/singleton
 
 ## Shoutouts
 
