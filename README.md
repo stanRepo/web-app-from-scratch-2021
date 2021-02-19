@@ -16,7 +16,7 @@ The purpose of this repo is to create an SPA list of cryptocurrency. With overvi
 - [Router](#Router)
 - [References And Sources](#References-And-Sources)
 
-# Getting-started
+# Getting started
 
 Clone the repository and host index.html on your (local) web server.
 
@@ -30,6 +30,7 @@ Clone the repository and host index.html on your (local) web server.
 - [x] Retrieve toplist by marketcap
 - [x] Template toplist by marketcap
 - [x] Homemade templating engine.
+- [x] Display user feedback (loader).
 - [ ] Create Wallet feature
 - [ ] Create add to Wallet functions
 - [ ] Create Remove from wallet functions
@@ -41,6 +42,51 @@ Clone the repository and host index.html on your (local) web server.
 Cryptocompare: https://min-api.cryptocompare.com/
 
 For this course I used the Cryptocompare API. I used `fetch()` to do multiple requests.
+`fetch()`:
+
+```js
+fetch = (endPoint) => {
+  return new Promise((resolve, reject) => {
+    const data = fetch(`${endPoint.url}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        this.data = {
+          data: data.Data || data,
+          query: endPoint.query,
+        };
+        try {
+          this.store.stateCreate(endPoint.query, data.Data);
+        } catch {
+          console.log("listerror, refining"); // 1 list is too big to store locally right now. So I use .map() to Filter it
+
+          const refinedData = this.template.mapInitList(
+            data.Data,
+            endPoint.query
+          );
+
+          if (refinedData) {
+            this.data = {
+              data: refinedData,
+              query: endPoint.query,
+            };
+            this.store.stateCreate(endPoint.query, this.data);
+            console.log("data refined");
+          } else {
+            data.query = endPoint.query;
+            console.log("All Lists Retrieved And Stored");
+          }
+        }
+
+        resolve(this.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+};
+```
 
 The API sends back a string which contains an object.
 If everything goes as planned it should look something like this:
