@@ -17,7 +17,7 @@ export default class API {
           return res.json();
         })
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           this.data = {
             data: data.Data || data,
             query: endPoint.query,

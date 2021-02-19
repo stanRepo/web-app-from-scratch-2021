@@ -30,7 +30,7 @@ export default class Renderer {
     });
   };
   clearEl = (el) => {
-    console.log(el.children[0]);
+    // console.log(el.children[0]);
     const newEl = el.children[0];
     el.innerHTML = "";
     el.insertAdjacentElement("beforeend", newEl);

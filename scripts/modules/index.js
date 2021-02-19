@@ -22,7 +22,7 @@ export default class Index extends Page {
       const today = new Date();
       const timeStamp = today.getTime();
       const savedTime = this.store.stateGet("freshTimeStamp"); // milliseconds
-      console.log(savedTime);
+      // console.log(savedTime);
 
       if (!savedTime || timeStamp - savedTime > 30000) {
         console.log("Retrieving new Data");

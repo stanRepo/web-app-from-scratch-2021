@@ -57,6 +57,7 @@ If everything goes as planned it should look something like this:
 # Design patterns used
 
 - Javascript Modular Design Pattern (1)
+- Javascript Singleton Pattern
 
 # Checklist
 
@@ -67,8 +68,8 @@ If everything goes as planned it should look something like this:
 - [x] Refine Basic Data List, Store Locally.
 - [x] Retrieve toplist by marketcap
 - [x] Template toplist by marketcap
-- [ ] Add feature that shows the highest buy-in position possible based on buy-in capital on hands.
-      (something like: if I spend 10.000 on Xcoin I will be at the top 100 hodlers, which is the highest I can position myself ATM)
+- [-] Add feature that shows the highest buy-in position possible based on buy-in capital on hands.
+  (something like: if I spend 10.000 on Xcoin I will be at the top 100 hodlers, which is the highest I can position myself ATM) [ FEATURE REMOVED In Current Patch]
 - [ ] Create Wallet feature
 - [ ] Create add to Wallet functions
 - [ ] Create Remove from wallet functions

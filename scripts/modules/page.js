@@ -44,7 +44,13 @@ export default class Page {
   colorPricePercentage = () => {
     const elements = document.querySelectorAll(".percentageDeltaPrice");
     const main = document.querySelector("main");
-    main.classList.add("setMood");
+
+    if (parseFloat(elements[0].innerText) < 0) {
+      main.classList.add("setMoodRed");
+    } else {
+      main.classList.add("setMoodGreen");
+    }
+
     elements.forEach((el) => {
       // console.log(el.innerText);
       if (parseFloat(el.innerText) < 0) {

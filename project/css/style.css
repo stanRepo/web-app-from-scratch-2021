@@ -5,8 +5,11 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: honeydew;
 }
-.setMood {
+.setMoodRed {
   border: 1vw solid red;
+}
+.setMoodGreen {
+  border: 1vw solid green;
 }
 header {
   text-align: center;
