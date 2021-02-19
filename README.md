@@ -18,7 +18,7 @@ The purpose of this repo is to create a watchlist for cryptocurrency. With overv
 
 # Getting-started
 
-clone the repository and host index.html on your web server.
+clone the repository and host index.html on your (local) web server.
 
 # Features
 
