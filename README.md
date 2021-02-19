@@ -18,7 +18,7 @@ The purpose of this repo is to create a watchlist for cryptocurrency. With overv
 
 # Getting-started
 
-clone the repository and host index.html on your (local) web server.
+Clone the repository and host index.html on your (local) web server.
 
 # Features
 
@@ -85,9 +85,10 @@ Let me explain what happens under the hood:
 
 1. I send the HTML element `(string)` and the data `(object)` to `render()`.
 2. The function looks for `{{ }}` tags and uses the word inside as a reference for the value that needs to be inserted.
-3. A `.replace` function used to replace the word.
+3. A `.replace` function is used to replace the word.
 4. So if I know `data` and I need `data.name` to be rendered. I can just add {{name}} to my html.
-   Templating Engine Code Examples
+
+Templating Engine Code Examples
 
 ```js
  render: (template, data) => {
@@ -102,6 +103,32 @@ Let me explain what happens under the hood:
 # Router
 
 I needed to handle the routes so I've used the microlibrary `routie.js` (3).
+Code Examples:
+
+Here I check for the current route then I reference to code located in `this`
+
+```js
+routie({ "": this["/"], "/": this["/"], "details/:id": this["details/:id"] });
+```
+
+The following Code is used for the routes at the moment:
+
+```js
+"/" = () => {
+  console.log("@home");
+  const indexPage = new Index(this.render, endPoints);
+  console.log(indexPage);
+  this.currentPage = indexPage;
+};
+"details/:id" = (id) => {
+  console.log("@details");
+  const detailsPage = new Details(this.render, endPoints, id);
+  this.currentPage = detailsPage;
+};
+"*" = () => {
+  console.log("404");
+};
+```
 
 # References And Sources
 
