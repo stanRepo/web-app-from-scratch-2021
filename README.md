@@ -37,7 +37,7 @@ clone the repository and host index.html on your web server.
 
 # API Used
 
-![description cryptocompare API](/project/assets/CryptoCompareDescription.jpg)
+![description cryptocompare API](/project/assets/CryptoCompareDescription.JPG)
 Cryptocompare: https://min-api.cryptocompare.com/
 
 For this course I used the Cryptocompare API. I used `fetch()` to do multiple requests.
@@ -51,11 +51,11 @@ If everything goes as planned it should look something like this:
 
 ## Actor Diagram
 
-![Actor Diagram](/project/assets/actorDiagram.jpg)
+![Actor Diagram](/project/assets/actorDiagram.JPG)
 
 ## Interaction Diagram
 
-![Interaction Diagram](/project/assets/interactionDiagram.jpg)
+![Interaction Diagram](/project/assets/interactionDiagram.JPG)
 
 # Design patterns used
 
