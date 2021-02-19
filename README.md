@@ -108,3 +108,14 @@ I needed to handle the routes so I've used the microlibrary `routie.js` (3).
 1. https://hackernoon.com/how-to-create-new-template-engine-using-javascript-8f26313p
 2. https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript
 3. https://github.com/jgallen23/routie
+
+## Shoutouts
+
+Special Thanks to the following people:
+
+- [Jonah Meyers](https://github.com/theonejonahgold)
+- [Nathan Neelis](https://github.com/NathanNeelis)
+- [Jelmer Overeem](https://github.com/Jelmerovereem)
+- [Solide Agency](https://github.com/solideagency)
+- [Robin Frugte](https://github.com/RobinFrugte97)
+- [Wouter van der Heijde](https://github.com/Mokerstier)
