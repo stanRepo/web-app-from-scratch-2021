@@ -55,9 +55,7 @@ export default class Page {
       // console.log(el.innerText);
       if (parseFloat(el.innerText) < 0) {
         el.classList.add("redNumber");
-        // el.classList.remove("redNumber");
       } else {
-        // el.classList.remove("greenNumber");
         el.classList.add("greenNumber");
       }
     });
@@ -70,11 +68,20 @@ export default class Page {
       Api: this.Api,
     };
   }
-  setMarketSentiment = (sentiment, color) => {
+
+  /*
+  @params: sentiment =  string. Holds the current market sentiment in english.
+  @params: classStyle = string. html class that holds "color" css style
+  */
+  setMarketSentiment = (sentiment, classStyle) => {
     const el = document.querySelector("#marketSentiment");
-    el.classList.add(color);
+    el.classList.add(classStyle);
     el.innerHTML = sentiment;
   };
+
+  /*
+  @params: percentTotal = sum of all Price changes in %.
+  */
   switchMarketSentiment = (percentTotal) => {
     if (percentTotal < 0) {
       this.setMarketSentiment(
@@ -100,25 +107,6 @@ export default class Page {
         "redNumber"
       );
     }
-
-    // switch (percentTotal) {
-    //   case percentTotal > -10 && percentTotal < 0:
-    //     this.setMarketSentiment(`Timid && Negative: ${percentTotal}`);
-    //     console.log(percentTotal);
-    //     break;
-    //   case percentTotal < 10 && percentTotal > 0:
-    //     this.setMarketSentiment(`Timid && Positive: ${percentTotal}`);
-    //     console.log(percentTotal);
-    //     break;
-    //   case percentTotal > 0:
-    //     this.setMarketSentiment(`Bullish && Positive${percentTotal}`);
-    //     console.log(percentTotal);
-    //     break;
-    //   case percentTotal < 0:
-    //     this.setMarketSentiment(`Bearish && Negative ${percentTotal}`);
-    //     console.log(percentTotal);
-    //     break;
-    // }
   };
   setXValueAvarage = (shareOfTotalList) => {
     const headerEl = document.querySelector("#headerX");
@@ -130,16 +118,12 @@ export default class Page {
     headerEl.innerHTML = total.toFixed(3).toString();
   };
   calculateSentimentsCorrelation = () => {
-    // const investment = form.querySelector("#investment");
-    // console.log(investment.value.split("").length);
     const combinedList = this.store.stateGet("combinedList");
     let percentTotal = 0;
     let percentArr = [];
     combinedList.forEach((coin) => {
       const singlePercent = parseFloat(coin.DISPLAY.EUR.CHANGEPCT24HOUR);
-      // console.log(
-      //   `${percentTotal} + ${singlePercent}= ${percentTotal + singlePercent}`
-      // );
+
       percentTotal += singlePercent;
       percentArr.push(singlePercent);
     });
@@ -148,10 +132,8 @@ export default class Page {
     let shareOfTotalList = [];
     combinedList.forEach((coin) => {
       const singlePercent = parseFloat(coin.DISPLAY.EUR.CHANGEPCT24HOUR);
-      // console.log(percentTotal);
-      const shareOfTotal = (singlePercent / percentTotal) * 100; //
-      // console.log(`${coin.Name} = share of total ${shareOfTotal}`);
-      // debugger;
+
+      const shareOfTotal = (singlePercent / percentTotal) * 100;
       shareOfTotalList.push({
         Name: coin.Name,
         share: shareOfTotal,
@@ -161,11 +143,8 @@ export default class Page {
     this.setXValueAvarage(shareOfTotalList);
 
     shareOfTotalList.forEach((coin) => {
-      // console.log(coin);
       const el = document.querySelector(`.coin${coin.Name}`);
-      // console.log(el);
       el.innerHTML = `<h2>${coin.share.toFixed(2)}</h2>`;
-      // debugger;
     });
   };
   positionCalc = (() => {
@@ -173,23 +152,6 @@ export default class Page {
     const form = document.querySelector("#calculatePositionForm"); // select form
     form.addEventListener("input", (e) => {
       e.preventDefault();
-
-      // const inputTicker = form.querySelector("#inputTicker");
     });
-
-    // stel 10k. inspelen op dip of ath => waar moet het geld in verdeeld worden.
-    // tel all sharedOfTotal op
-    // x = bereken aandeel coin in sharedTotalALL
-    // x* investment.value
-
-    // leg 1000 in
-    // als je naaste laatste 24 uur kijkt
-    // =>prcentuele verandering prijs
-    // alle % veranderingen optellen
-    // const x = alleVerandering 3% 5% 10%
-    //18% 5
-    // 5/18*100
-    // * investment
-    // = waar hebben we het meeste verdiend?
   })();
 }

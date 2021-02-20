@@ -39,6 +39,7 @@ export default class Details extends Page {
           let finalList = this.template.createDataSetMarketCapOverview([coin]);
           console.log(finalList);
           this.renderer.renderTable(finalList);
+          this.calculateSentimentsCorrelation();
           this.renderer.renderDetails(finalList);
         }
       });

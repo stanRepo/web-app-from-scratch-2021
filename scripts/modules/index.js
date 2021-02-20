@@ -38,6 +38,7 @@ export default class Index extends Page {
               this.store.stateCreate(`freshTimeStamp`, timeStamp);
               console.log("calling Combiner");
               const combinedList = this.template.combineLists(res);
+              console.log(combinedList);
               this.store.stateCreate("combinedList", combinedList);
               // call renderer
 
