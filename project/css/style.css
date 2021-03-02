@@ -19,6 +19,9 @@ h1 {
   font-size: 10vh;
   margin: 0;
 }
+h3 {
+  text-decoration: underline;
+}
 table {
   margin: 0vw 5vw;
 }
@@ -56,9 +59,11 @@ a {
 td {
   text-align: center;
 }
+.coin {
+  transition: 0.1s;
+}
 .coin:hover {
   transform: scale(1.05);
-  transition: 0.1s;
 }
 
 .overviewTable td {

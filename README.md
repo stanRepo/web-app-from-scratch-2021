@@ -106,6 +106,7 @@ If everything goes as planned it should look something like this:
 # Design patterns used
 
 - Javascript Modular Design Pattern (1)
+- Javascript Constructor Pattern (5)
 - Javascript Singleton Pattern (4)
 
 # Checklist
@@ -182,6 +183,7 @@ The following Code is used for the routes at the moment:
 2. https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript
 3. https://github.com/jgallen23/routie
 4. https://www.dofactory.com/javascript/design-patterns/singleton
+5. https://blog.logrocket.com/javascript-design-pattern-214d888096a3
 
 ## Shoutouts
 
